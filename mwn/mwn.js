@@ -192,7 +192,11 @@
   }).observe(stage);
 
   // ---------------------------------------------------------------- load
-  fetch(SVG_URL).then(r => r.text()).then(text => {
+  // mwn-svg.js (built by build-svg.py) defines window.MWN_SVG; fall back to fetch over http.
+  const load = window.MWN_SVG
+    ? Promise.resolve(window.MWN_SVG)
+    : fetch(SVG_URL).then(r => r.text());
+  load.then(text => {
     host.innerHTML = text;
     svg = host.querySelector('svg');
     svg.removeAttribute('width'); svg.removeAttribute('height');
