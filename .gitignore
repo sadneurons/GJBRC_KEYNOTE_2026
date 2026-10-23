@@ -5,3 +5,5 @@ index_files/
 .DS_Store
 
 **/*.quarto_ipynb
+references/foresight/*.pdf
+references/foresight/*.PDF
