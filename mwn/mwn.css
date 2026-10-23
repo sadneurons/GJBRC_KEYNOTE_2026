@@ -1,0 +1,78 @@
+:root {
+  --purple-dark: #2a0b44;
+  --purple: #462072;
+  --grey: #f6f6f6;
+  --teal: #00e6cb;
+  --gold: #fbb109;
+  --white: #ffffff;
+}
+html, body { height: 100%; margin: 0; }
+body {
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  color: var(--purple);
+  font-family: "Open Sans", Arial, sans-serif;
+  overflow: hidden;
+  user-select: none;
+}
+#stage {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  cursor: grab;
+  background: var(--white);
+}
+#stage.dragging { cursor: grabbing; }
+#host, #host svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+#host svg { display: block; }
+#loading {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; color: var(--purple);
+  background: var(--white);
+  transition: opacity .3s;
+}
+#loading.hidden { opacity: 0; pointer-events: none; }
+
+#toolbar {
+  flex: 0 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  align-items: center;
+  padding: 8px 14px;
+  background: var(--grey);
+  border-top: 1px solid rgba(70, 32, 114, .15);
+}
+#toolbar .group { display: flex; flex-wrap: wrap; gap: 6px; }
+#toolbar .group + .group { padding-left: 18px; border-left: 1px solid rgba(70, 32, 114, .2); }
+#toolbar button {
+  font: 600 13px/1 "Open Sans", Arial, sans-serif;
+  color: var(--purple);
+  background: var(--white);
+  border: 1.5px solid var(--purple);
+  border-radius: 999px;
+  padding: 7px 13px;
+  cursor: pointer;
+  transition: background .15s, color .15s;
+}
+#toolbar button:hover { background: rgba(70, 32, 114, .08); }
+#toolbar button.active { background: var(--purple); color: var(--white); }
+#toolbar button:focus-visible { outline: 3px solid var(--teal); outline-offset: 1px; }
+#zoom-in, #zoom-out { min-width: 34px; padding-left: 0; padding-right: 0; font-size: 16px; }
+
+#credit {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 4px 14px 6px;
+  font-size: 11px;
+  color: rgba(70, 32, 114, .75);
+  background: var(--grey);
+}
+#credit em { font-style: italic; }
+
+/* embedded in a slide: hide the toolbar and credit (the deck drives it) */
+body.embedded #toolbar, body.embedded #credit { display: none; }
+body.embedded.show-toolbar #toolbar { display: flex; }

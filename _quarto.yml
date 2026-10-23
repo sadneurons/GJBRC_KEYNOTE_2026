@@ -3,7 +3,10 @@ project:
   output-dir: _site
   render:
     - index.qmd
+  resources:
+    - mwn/
 
 format:
   gjbrc-revealjs:
     embed-resources: false
+    include-after-body: mwn-bridge.html

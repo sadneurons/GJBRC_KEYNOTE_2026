@@ -1,0 +1,59 @@
+<script>
+/* Bridge between reveal.js fragments and the MWN widget iframe.
+ *
+ * In a slide:
+ *   <iframe class="mwn-frame" data-src="mwn/index.html?embed=1"></iframe>
+ *   <span class="fragment mwn-view" data-view="mental"></span>
+ *   <span class="fragment mwn-view" data-view="adult"></span>
+ *
+ * Each fragment, when shown, sends its data-view to the iframe. Hiding a fragment
+ * (stepping back) sends the previous fragment's view, or "whole".
+ * data-x/y/w/h on a fragment sends an arbitrary viewBox instead of a named view.
+ */
+(function () {
+  function post(slide, msg) {
+    var frame = slide && slide.querySelector('iframe.mwn-frame');
+    if (frame && frame.contentWindow) frame.contentWindow.postMessage(msg, '*');
+  }
+  function msgFor(el) {
+    if (!el) return { type: 'mwn:view', name: 'whole' };
+    if (el.dataset.x != null) {
+      return { type: 'mwn:viewbox', x: +el.dataset.x, y: +el.dataset.y, w: +el.dataset.w, h: +el.dataset.h };
+    }
+    return { type: 'mwn:view', name: el.dataset.view || 'whole' };
+  }
+  function currentView(slide) {
+    var shown = slide.querySelectorAll('.fragment.mwn-view.visible');
+    return msgFor(shown.length ? shown[shown.length - 1] : null);
+  }
+  function wire() {
+    Reveal.on('fragmentshown', function (e) {
+      if (e.fragment.classList.contains('mwn-view')) post(Reveal.getCurrentSlide(), msgFor(e.fragment));
+    });
+    Reveal.on('fragmenthidden', function (e) {
+      if (e.fragment.classList.contains('mwn-view')) post(Reveal.getCurrentSlide(), currentView(Reveal.getCurrentSlide()));
+    });
+    // when the widget finishes loading (iframe is lazy), sync it to the fragment state
+    window.addEventListener('message', function (e) {
+      if (e.data && e.data.type === 'mwn:ready') {
+        var slide = Reveal.getCurrentSlide();
+        if (slide && slide.querySelector('iframe.mwn-frame')) post(slide, currentView(slide));
+      }
+    });
+  }
+  if (window.Reveal && Reveal.isReady && Reveal.isReady()) wire();
+  else window.addEventListener('load', function () { Reveal.on('ready', wire); if (Reveal.isReady()) wire(); });
+})();
+</script>
+<style>
+.reveal iframe.mwn-frame {
+  position: absolute; left: 0; top: 0;
+  width: 1280px; height: 720px;
+  border: 0; background: #fff;
+}
+.reveal .slides section.slide > p.mwn-caption {
+  position: absolute; left: 6.9%; bottom: 3.5%;
+  margin: 0; font-size: 14.67px; line-height: 1.3; color: #462072; z-index: 2;
+  background: rgba(246, 246, 246, .9); padding: 4px 10px; border-radius: 4px;
+}
+</style>

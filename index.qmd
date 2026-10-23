@@ -30,6 +30,18 @@ format: gjbrc-revealjs
 :::
 ::::
 
+## Mental capital through life {.white .no-logo}
+
+<iframe class="mwn-frame" data-src="mwn/index.html?embed=1" data-preload allow="fullscreen"></iframe>
+
+<span class="fragment mwn-view" data-view="prenatal"></span>
+<span class="fragment mwn-view" data-view="adolescent"></span>
+<span class="fragment mwn-view" data-view="mental"></span>
+<span class="fragment mwn-view" data-view="older"></span>
+<span class="fragment mwn-view" data-view="whole"></span>
+
+<p class="mwn-caption">Foresight Mental Capital and Wellbeing Project (2008), Government Office for Science. Crown copyright, OGL.</p>
+
 # What we found
 
 ## Key finding
