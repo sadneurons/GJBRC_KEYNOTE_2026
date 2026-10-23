@@ -4,7 +4,7 @@ project:
   render:
     - index.qmd
   resources:
-    - mwn/
+    - mwn/index.html
 
 format:
   gjbrc-revealjs:
