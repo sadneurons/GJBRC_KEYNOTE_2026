@@ -1,0 +1,323 @@
+/*-- scss:defaults --*/
+// GJBRC PowerPoint template v04, ported to reveal.js for Quarto.
+// Colours are sampled directly from the template artwork.
+@import url("https://fonts.googleapis.com/css2?family=Asap:wght@700&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap");
+
+$gjbrc-purple-dark: #2a0b44; // dark slide background
+$gjbrc-purple:      #462072; // brand purple: text, lavender blob, corner triangle
+$gjbrc-grey:        #f6f6f6; // light slide background
+$gjbrc-teal:        #00e6cb; // comparison-slide bullets
+$gjbrc-gold:        #fbb109; // teardrop / corner triangle
+$gjbrc-white:       #ffffff;
+
+// Slide is 1280 x 720. Template is 960 x 540 pt, so 1 pt = 1.3333 px.
+$font-family-sans-serif: "Open Sans", Arial, sans-serif;
+$presentation-heading-font: "Asap", "Open Sans", Arial, sans-serif;
+$presentation-heading-font-weight: 700;
+$presentation-font-size-root: 24px;    // 18 pt
+$presentation-line-height: 1.3;
+$body-bg: $gjbrc-grey;
+$body-color: $gjbrc-purple;
+$presentation-heading-color: $gjbrc-purple;
+$link-color: $gjbrc-purple;
+$link-color-hover: darken($gjbrc-teal, 15%);
+$selection-bg: $gjbrc-teal;
+$code-color: $gjbrc-purple;
+$code-block-bg: $gjbrc-white;
+$code-block-border-color: rgba($gjbrc-purple, .25);
+
+/*-- scss:rules --*/
+$title-size:   58.67px; // 44 pt
+$h2-size:      58.67px; // 44 pt content titles
+$small-title:  32px;    // 24 pt centred titles (comparison / team)
+$lvl1: 32px;            // 24 pt
+$lvl2: 26.67px;         // 20 pt
+$lvl3: 24px;            // 18 pt
+$lvl4: 21.33px;         // 16 pt
+$lvl5: 18.67px;         // 14 pt
+
+// ---------------------------------------------------------------- backgrounds
+// reveal.js copies each slide's classes onto its .slide-background layer, so
+// backgrounds and logos live there and never collide with slide content.
+.reveal .slide-background {
+  background-color: $gjbrc-grey;
+  background-image: url("ASSET:bg-content");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  &::after {               // logo
+    content: "";
+    position: absolute;
+    display: block;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url("ASSET:logo-purple");
+    left: 78.5%; top: 89.4%; width: 18.7%; height: 7.2%;
+  }
+}
+.reveal .slide-background.gjbrc-title,
+.reveal .slide-background.end {
+  background-color: $gjbrc-purple-dark;
+  background-image: url("ASSET:bg-title");
+  &::after {
+    background-image: url("ASSET:logo-light");
+    left: 8.77%; top: 17.9%; width: 30.96%; height: 11.9%;
+  }
+}
+.reveal .slide-background.level1,          // pandoc level-1 heading = section divider
+.reveal .slide-background.section {
+  background-color: $gjbrc-purple-dark;
+  background-image: url("ASSET:bg-section");
+  &::after { background-image: url("ASSET:logo-light"); }
+}
+.reveal .slide-background.comparison { background-image: url("ASSET:bg-comparison"); }
+.reveal .slide-background.image-1,
+.reveal .slide-background.image-4   { background-image: url("ASSET:bg-image"); }
+.reveal .slide-background.image-copy,
+.reveal .slide-background.white     { background-image: none; background-color: $gjbrc-white; }
+.reveal .slide-background.plain     { background-image: none; }
+.reveal .slide-background.no-logo::after { display: none; }
+
+// ---------------------------------------------------------------- base layout
+.reveal .slides section.slide,
+.reveal .slides section#title-slide {
+  box-sizing: border-box;
+  height: 100%;
+  padding: 0 6.9% 0 6.9%;
+  text-align: left;
+  font-family: $font-family-sans-serif;
+}
+.reveal .slides section .slide-content { height: 100%; }
+
+.reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+  font-family: $presentation-heading-font;
+  font-weight: 700;
+  color: $gjbrc-purple;
+  text-transform: none;
+  letter-spacing: 0;
+  margin: 0;
+}
+
+// reveal.js adds has-light-background and forces headings to #222: override.
+.reveal section.has-light-background,
+.reveal section.has-light-background h1,
+.reveal section.has-light-background h2,
+.reveal section.has-light-background h3,
+.reveal section.has-light-background h4 { color: $gjbrc-purple; }
+
+// Content slide title: box at y 38px (5.3 %), height 139px (19.3 %), text vertically centred.
+.reveal .slides section.slide > h2:first-child {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  height: 139px;
+  margin-top: 38px;
+  margin-bottom: 14px;        // body starts at 191px (26.6 %)
+  font-size: $h2-size;
+  line-height: 1.1;
+}
+
+// Body text and bullet levels (24 / 20 / 18 / 16 / 14 pt).
+.reveal p, .reveal li { color: $gjbrc-purple; }
+.reveal .slides section.slide > p { font-size: $lvl3; }
+.reveal ul, .reveal ol { margin-left: 0; padding-left: 0; list-style-position: inside; }
+.reveal ul, .reveal ul ul, .reveal ul ul ul, .reveal ul ul ul ul, .reveal ul ul ul ul ul { list-style-type: disc; }
+.reveal li { font-size: $lvl1; line-height: 1.2; margin: 0 0 .9em 0; }
+.reveal li li { font-size: $lvl2; margin: .55em 0 .55em 1.1em; }
+.reveal li li li { font-size: $lvl3; margin: .45em 0 .45em 1em; }
+.reveal li li li li { font-size: $lvl4; margin: .4em 0 .4em 1em; }
+.reveal li li li li li { font-size: $lvl5; margin: .35em 0 .35em 1em; }
+.reveal li::marker { color: $gjbrc-purple; }
+.reveal ul ul, .reveal ol ol { margin-top: .4em; }
+
+// ---------------------------------------------------------------- title slide
+.reveal .slides section#title-slide {
+  display: block !important;   // Quarto adds .center; keep flow layout
+  padding-left: 8.5%;
+  padding-top: 262px;          // title text at ~37 % as in the template
+  .title {
+    width: 49.3%;
+    font-size: $title-size;
+    line-height: 1.12;
+    color: $gjbrc-white;
+    margin: 0;
+  }
+  .subtitle {
+    width: 49.3%;
+    margin: .9em 0 0 0;
+    font-size: $lvl2;
+    color: $gjbrc-white;
+  }
+  .author, .institute, .date {
+    margin: 0;
+    font-size: $lvl4;
+    color: $gjbrc-white;
+    line-height: 1.5;
+  }
+  .author { margin-top: .9em; }
+}
+
+// ---------------------------------------------------------------- section divider
+.reveal .slides section.slide.level1,
+.reveal .slides section.slide.section {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 43px;
+  > h1, > h2 {
+    display: block;
+    height: auto;
+    margin: 0;
+    text-align: center;
+    width: 86.2%;
+    color: $gjbrc-white;
+    font-size: $title-size;
+    line-height: 1.12;
+  }
+  p, li { color: $gjbrc-white; }
+}
+
+// ---------------------------------------------------------------- end slide
+.reveal .slides section.slide.end {
+  padding-left: 8.5%;
+  > h2:first-child {
+    height: auto;
+    margin-top: 255px;        // 35.4 %
+    margin-bottom: .55em;
+    color: $gjbrc-white;
+    font-size: $title-size;
+  }
+  p, li { color: $gjbrc-white; margin: 0; font-size: $lvl3; line-height: 1.25; }
+  .small, small { font-size: $lvl5; line-height: 1.6; }
+  ul { list-style: none; }
+}
+
+// ---------------------------------------------------------------- comparison
+.reveal .slides section.slide.comparison,
+.reveal .slides section.slide.team {
+  > h2:first-child {
+    justify-content: center;
+    text-align: center;
+    height: auto;
+    margin-top: 70px;         // box 9.3 %..15.5 %, text centred at ~89px
+    margin-bottom: 0;
+    font-size: $small-title;
+    line-height: 1.2;
+  }
+}
+.reveal .slides section.slide.comparison {
+  .columns { margin-top: 46px; }  // bullets from 151px (21 %)
+  .column:first-child { width: 44.1% !important; }
+  .column:last-child  { width: 42.3% !important; margin-left: auto; }
+  li { font-size: $lvl2; line-height: 1.2; margin-bottom: 2.15em; }  // 90px pitch (12.5 %)
+  li::marker { color: $gjbrc-teal; }
+}
+
+// ---------------------------------------------------------------- team slide
+.reveal .slides section.slide.team {
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px 60px;
+    margin: 30px 50px 0 50px;
+    text-align: center;
+  }
+  .member {
+    img, .avatar {
+      display: block;
+      width: 112px; height: 112px;
+      margin: 0 auto 1.1em auto;
+      border-radius: 50%;
+      border: 1.5px solid $gjbrc-purple;
+      object-fit: cover;
+      background: transparent;
+    }
+    h3 { font-size: $lvl5; margin-bottom: .35em; }
+    p  { font-size: 14.67px; line-height: 1.3; margin: 0; } // 11 pt
+  }
+}
+
+// ---------------------------------------------------------------- image / copy
+.reveal .slides section.slide.image-copy {
+  padding-left: 54.2%;
+  padding-right: 6.9%;
+  .photo {
+    position: absolute;
+    left: 0; top: 0;
+    width: 49.4%; height: 100%;
+    margin: 0;
+    overflow: hidden;
+    img { width: 100%; height: 100%; object-fit: cover; margin: 0; display: block; max-height: none; }
+  }
+  li { font-size: $lvl1; margin-bottom: .35em; }
+  li li { font-size: $lvl2; margin: .3em 0 .3em 1em; }
+  li li li { font-size: $lvl3; }
+  li li li li { font-size: $lvl4; }
+}
+
+// ---------------------------------------------------------------- 1 x image
+.reveal .slides section.slide.image-1 {
+  padding-left: 61%;
+  padding-top: 209px;
+  .photo {
+    position: absolute;
+    left: 6.9%; top: 19.7%;
+    width: 51.1%; height: 60.6%;
+    margin: 0;
+    overflow: hidden;
+    img { width: 100%; height: 100%; object-fit: cover; margin: 0; display: block; max-height: none; }
+  }
+  > h2:first-child { height: auto; margin: 0 0 1.2em 0; font-size: $lvl2; line-height: 1.2; }
+  > p, li { font-size: $lvl4; line-height: 1.35; }
+}
+
+// ---------------------------------------------------------------- 4 x image
+.reveal .slides section.slide.image-4 {
+  padding-right: 60%;
+  padding-top: 209px;
+  > h2:first-child { height: auto; margin: 0 0 1.2em 0; font-size: $lvl2; line-height: 1.2; }
+  > p, li { font-size: $lvl4; line-height: 1.35; }
+  .photos {
+    position: absolute;
+    left: 44.6%; top: 20.8%;
+    width: 50.9%; height: 60.5%;
+    margin: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 2.2% 1.8%;
+    p, .quarto-figure, figure { margin: 0; display: contents; }
+    figcaption { display: none; }
+    img { width: 100%; height: 100%; min-height: 0; object-fit: cover; margin: 0; display: block; max-height: none; }
+  }
+}
+
+// ---------------------------------------------------------------- chrome
+.reveal .slide-number {
+  position: fixed;
+  left: 11%; right: auto; bottom: 2.6%;  // template: 6.9 %, nudged clear of the corner triangle
+  padding: 0;
+  background: none;
+  font-family: $font-family-sans-serif;
+  font-size: 16px;         // 12 pt
+  color: $gjbrc-purple;
+  a { color: inherit; }
+}
+// hide the number on dark slides, as the template does
+.reveal:has(section.present#title-slide) .slide-number,
+.reveal:has(section.present.end) .slide-number,
+.reveal:has(section.present.level1) .slide-number,
+.reveal:has(section.present.section) .slide-number { visibility: hidden; }
+
+.reveal .footer { display: none; }
+
+// tables, code, blockquotes in brand colours
+.reveal table { font-size: $lvl4; color: $gjbrc-purple; }
+.reveal table th { border-bottom: 2px solid $gjbrc-purple; }
+.reveal table td { border-bottom: 1px solid rgba($gjbrc-purple, .2); }
+.reveal blockquote { border-left: 4px solid $gjbrc-teal; background: rgba($gjbrc-purple, .06); color: $gjbrc-purple; }
+.reveal strong { font-weight: 700; }
+.reveal .highlight, .reveal mark { background: $gjbrc-teal; color: $gjbrc-purple-dark; }
+.reveal .gold  { color: $gjbrc-gold; }
+.reveal .teal  { color: $gjbrc-teal; }
+.reveal .white { color: $gjbrc-white; }

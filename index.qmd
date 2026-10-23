@@ -1,0 +1,53 @@
+---
+title: "GJBRC Keynote 2026"
+subtitle: "Geoffrey Jefferson Brain Research Centre"
+author: "Ross Dunne"
+date: last-modified
+date-format: "D MMMM YYYY"
+format: gjbrc-revealjs
+---
+
+## Outline
+
+- Where we are
+- What we found
+- Where we go next
+
+# Where we are
+
+## Context {.comparison}
+
+:::: {.columns}
+::: {.column}
+- Point 1
+- Point 2
+- Point 3
+:::
+::: {.column}
+- Point 4
+- Point 5
+- Point 6
+:::
+::::
+
+# What we found
+
+## Key finding
+
+- Headline result
+  - Supporting detail
+  - Supporting detail
+
+# Where we go next
+
+## Next steps
+
+- Step 1
+- Step 2
+- Step 3
+
+## Thank you {.end}
+
+Ross Dunne
+
+[your.email@example.ac.uk]{.small}

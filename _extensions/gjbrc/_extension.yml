@@ -1,0 +1,22 @@
+title: GJBRC reveal.js theme
+author: Geoffrey Jefferson Brain Research Centre template (ported)
+version: 1.0.0
+quarto-required: ">=1.4.0"
+contributes:
+  formats:
+    revealjs:
+      theme: [default, gjbrc.scss]
+      template-partials:
+        - title-slide.html
+      width: 1280
+      height: 720
+      margin: 0
+      center: false
+      slide-number: true
+      slide-level: 2
+      transition: none
+      background-transition: none
+      controls: false
+      progress: false
+      menu: false
+      hash: true

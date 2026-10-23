@@ -1,0 +1,9 @@
+project:
+  type: default
+  output-dir: _site
+  render:
+    - index.qmd
+
+format:
+  gjbrc-revealjs:
+    embed-resources: false
