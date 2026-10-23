@@ -16,7 +16,9 @@ to **GitHub Actions**.
 
 ## Mental Capital diagram widget
 
-`mwn/index.html` is a single self-contained file (CSS, JS and SVG inlined) built by
-`python3 mwn/build.py` from `index.src.html`, `mwn.css`, `mwn.js` and `mwn.svg`.
+`mwn/index.html` is a single self-contained file built by `python3 mwn/build.py` from
+`index.src.html`, `mwn.css`, `mwn.js` and `mwn.png` (a 300 dpi render of the Foresight PDF,
+made with `pdftoppm -r 300`). A bitmap is used deliberately: vector conversions of this PDF
+render blank in Firefox and most non-Chrome viewers.
 Edit the sources and rebuild; only the built file is copied into `_site/`.
 Viewpoints are the `VIEWS` table at the top of `mwn.js`.

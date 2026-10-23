@@ -7,12 +7,11 @@
  *               The widget replies with { type: 'mwn:ready', views: [...] } once loaded.
  *
  * Viewpoints are rectangles in the diagram's own coordinate space (PDF points,
- * 1190.55 x 841.89). Edit VIEWS to add or tune them. `pad` is extra margin in points.
+ * 1190.55 x 841.89; the picture itself is a 300 dpi raster inlined by build.py). Edit VIEWS to add or tune them. `pad` is extra margin in points.
  */
 (() => {
   'use strict';
 
-  const SVG_URL = 'mwn.svg';
   const FULL = { x: 0, y: 0, w: 1190.55, h: 841.89 };
   const MIN_W = 80;                  // deepest zoom
   const MAX_W = FULL.w * 1.6;        // furthest zoom-out
@@ -192,10 +191,10 @@
   }).observe(stage);
 
   // ---------------------------------------------------------------- load
-  // mwn-svg.js (built by build-svg.py) defines window.MWN_SVG; fall back to fetch over http.
+  // build.py inlines the diagram as window.MWN_SVG (a viewBox-wrapped PNG).
   const load = window.MWN_SVG
     ? Promise.resolve(window.MWN_SVG)
-    : fetch(SVG_URL).then(r => r.text());
+    : Promise.reject(new Error('index.html must be built with build.py'));
   load.then(text => {
     host.innerHTML = text;
     svg = host.querySelector('svg');
