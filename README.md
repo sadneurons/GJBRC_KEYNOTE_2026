@@ -22,3 +22,17 @@ made with `pdftoppm -r 300`). A bitmap is used deliberately: vector conversions 
 render blank in Firefox and most non-Chrome viewers.
 Edit the sources and rebuild; only the built file is copied into `_site/`.
 Viewpoints are the `VIEWS` table at the top of `mwn.js`.
+
+## The forking-paths line
+
+`forks.html` draws Maisie's life line (1840 to 2040) as an inline SVG. Put
+`<div class="forks" data-stage="N"></div>` in a slide with class `.forks-slide`;
+a fragment `<span class="fragment forks-stage" data-stage="N+1"></span>` grows it
+on the next click. Stages: 0 the three women before her, 1 Maisie, 2 the
+eleven-plus, 3 Ferranti, 4 the mid-life forks, 5 the GP's twelve minutes,
+6 the four women, 7 where they live. Years, labels and branch offsets are the
+tables at the top of the script. `tools/shoot_deck.py _site/index.html out/`
+screenshots every step of the deck in one headless Chrome.
+
+The deck follows `../KEYNOTE_SCRIPT_15min.md`; slide notes in `.note` divs hold
+the figures and placeholders still to verify.

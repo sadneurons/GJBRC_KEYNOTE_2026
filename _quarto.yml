@@ -5,8 +5,11 @@ project:
     - index.qmd
   resources:
     - mwn/index.html
+    - images/
 
 format:
   gjbrc-revealjs:
     embed-resources: false
-    include-after-body: mwn-bridge.html
+    include-after-body:
+      - mwn-bridge.html
+      - forks.html
