@@ -23,16 +23,27 @@ render blank in Firefox and most non-Chrome viewers.
 Edit the sources and rebuild; only the built file is copied into `_site/`.
 Viewpoints are the `VIEWS` table at the top of `mwn.js`.
 
-## The forking-paths line
+## The stage: one diagram behind every slide
 
-`forks.html` draws Maisie's life line (1840 to 2040) as an inline SVG. Put
-`<div class="forks" data-stage="N"></div>` in a slide with class `.forks-slide`;
-a fragment `<span class="fragment forks-stage" data-stage="N+1"></span>` grows it
-on the next click. Stages: 0 the three women before her, 1 Maisie, 2 the
-eleven-plus, 3 Ferranti, 4 the mid-life forks, 5 the GP's twelve minutes,
-6 the four women, 7 where they live. Years, labels and branch offsets are the
-tables at the top of the script. `tools/shoot_deck.py _site/index.html out/`
-screenshots every step of the deck in one headless Chrome.
+`stage.html` draws two lines on one axis, 1946 to 2045: the machine's line (the Baby,
+1948, with Jefferson's and Turing's strands) and Maisie's line (9 June 1949), which forks
+into four women. Their crossings (June 1949, Ferranti 1965, the clinic 2026) are drawn as
+gold ties between the lines. The stage sits behind every slide and animates between
+states; each slide declares its state on the heading:
 
-The deck follows `../KEYNOTE_SCRIPT_15min.md`; slide notes in `.note` divs hold
-the figures and placeholders still to verify.
+```
+## Title {.on-stage data-stage="4" data-machine="7" data-view="1946-1975" data-lit="x1965,b77"}
+```
+
+- `data-stage` 0..8: Maisie's line (born, to 1960, fork 1960, fork 1965, mid-life forks,
+  fork 2026, endpoints, places). `data-machine` 0..8: the machine's line.
+- `data-view="y0-y1"` zooms time; the vertical layout never changes.
+- `data-lit` lights branches (`b68 b77 b84 b91`) and crossings (`x1949 x1965 x2026`);
+  everything else dims. `data-dim="1"` fades the whole stage behind a large panel.
+- Overlays: `<div class="pin below|above|mid [wide] [left|right]" data-year="1965">` is
+  pinned to a year; `<div class="cover [dark]">` is a large panel. Do not name a class
+  `callout`: Quarto rewrites those.
+
+All years, labels and branch offsets are the tables at the top of `stage.html`.
+`tools/shoot_deck.py _site/index.html out/` screenshots every slide in one headless Chrome.
+The previous slide-by-slide deck is on the `deck-v1` branch.

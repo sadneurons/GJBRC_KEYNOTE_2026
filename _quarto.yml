@@ -12,4 +12,4 @@ format:
     embed-resources: false
     include-after-body:
       - mwn-bridge.html
-      - forks.html
+      - stage.html
