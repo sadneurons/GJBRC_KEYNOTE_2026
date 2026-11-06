@@ -1,6 +1,6 @@
 ---
-title: "What is a brain, that it can feel its way to a sonnet?"
-subtitle: "Maisie, 1949 to 2040"
+title: "Manchester Brain Health Centre"
+subtitle: "A fork in the road"
 author: "Ross Dunne"
 date: last-modified
 date-format: "D MMMM YYYY"
@@ -9,31 +9,31 @@ format: gjbrc-revealjs
 
 ## Thursday, 9 June 1949 {.image-1}
 
-::: {.photo}
-![](images/chorltonmedlock.jpg)
+::: {.photo .left}
+![](images/Harpurhey1949.jpg)
 :::
 
-Maisie is born at home in Harpurhey, in a two-up two-down off Rochdale Road.
-
-The same afternoon, at the Royal College of Surgeons, Geoffrey Jefferson gives the Lister Oration: *The Mind of Mechanical Man*.
-
-::: {.note}
-Image placeholder: a Harpurhey street c. 1949 (this is James Street, Chorlton-on-Medlock, Manchester Libraries).
+::: {.photo .right}
+![](images/ListerOration.png)
 :::
+
 
 ## {.center-text}
 
-<p class="quote">No machine could be called a brain until it had written a sonnet because of thoughts and emotions felt, and knew that it had written it.</p>
+<p class="quote">"Not until a machine can write a sonnet or compose a concerto because of thoughts and emotions felt, and not by the chance fall of symbols, could we agree that machine equals brain -- that is, not only write it but know that it had written it...</p>
+<p class="attrib">Geoffrey Jefferson, Lister Oration, 9 June 1949</p>
+
+
+## {.center-text}
+
+<p class="quote">...No mechanism could feel (and not merely artificially signal, an easy contrivance) pleasure at its successes, grief when its valves fuse, be warmed by flattery, be made miserable by its mistakes, be charmed by sex, be angry or depressed when it cannot get what it wants."</p>
 <p class="attrib">Geoffrey Jefferson, Lister Oration, 9 June 1949</p>
 
 ## {.center-text}
 
 <p class="quote">A sonnet written by a machine would probably be better appreciated by another machine.</p>
-<p class="attrib">Alan Turing, in <em>The Times</em>, 11 June 1949, "Calculus to Sonnet". Maisie was two days old.</p>
+<p class="attrib">Alan Turing, in <em>The Times</em>, 11 June 1949, "Calculus to Sonnet".</p>
 
-## {.center-text}
-
-<p class="quote">What is a brain, that it can feel its way to a sonnet, and know that it has done so?</p>
 
 # Three women before her
 
@@ -43,20 +43,18 @@ Image placeholder: a Harpurhey street c. 1949 (this is James Street, Chorlton-on
 ![](images/chorltonmedlock.jpg)
 :::
 
-- Her great-grandmother, born in the cellars in the bend of the Medlock
+
+::: {.video}
+{{< video images/ferranti-soldering-getty.mp4 >}}
+:::
+- Her great-grandmother, born in the Little Ireland at the bend of the Medlock
 - Engels walked through in 1844
-- Typhus at nineteen
 
 ## Chadwick, 1842 {.image-copy .contain}
 
 ::: {.photo}
 ![](images/ChadwickTable.png)
 :::
-
-- Deaths under twenty, by class and town
-- Manchester gentry: one in three
-- Manchester labourers: two in three
-- Rutland labourers: one in two and a half
 
 ::: {.note}
 Script quotes the average-age-at-death table (17 / 20 / 38). Either swap the image or change the line.
