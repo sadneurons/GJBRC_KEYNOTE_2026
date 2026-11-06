@@ -7,210 +7,259 @@ date-format: "DD MMMM YYYY"
 format: gjbrc-revealjs
 ---
 
-## {.on-stage data-stage="1" data-machine="1" data-view="1946-1954" data-lit="x1949"}
+## {.stage view="1946-1954" grow="machine:1949.3 maisie:1949.7" lit="x1949" colours="false" ends="false"}
 
-<div class="pin below right" data-year="1949.44">
-<img src="images/Harpurhey1949.jpg">
-<p>Thursday, 9 June 1949. Maisie is born at home in Harpurhey, in a two-up two-down off Rochdale Road.</p>
-</div>
+::: {.pin year=1949.44 side=below align=right}
+![](images/Harpurhey1949.jpg)
 
-## {.on-stage data-stage="1" data-machine="2" data-view="1946-1954" data-lit="x1949"}
+Thursday, 9 June 1949. Maisie is born at home in Harpurhey, in a two-up two-down off Rochdale Road.
+:::
 
-<div class="pin above wide right" data-year="1949.44">
-<img src="images/ListerOration.png" style="max-height:170px;object-fit:contain">
-<p class="q">"Not until a machine can write a sonnet or compose a concerto because of thoughts and emotions felt, and not by the chance fall of symbols, could we agree that machine equals brain, that is, not only write it but know that it had written it."</p>
-<p class="who">Geoffrey Jefferson, the Lister Oration, Royal College of Surgeons, the same afternoon</p>
-</div>
+## {.stage grow="machine:1949.7"}
 
-## {.on-stage data-stage="1" data-machine="2" data-view="1946-1954" data-lit="x1949"}
+::: {.pin year=1949.44 side=above width=wide align=right}
+![](images/ListerOration.png){height=170}
 
-<div class="pin above wide right" data-year="1949.44">
-<p class="q">"No mechanism could feel (and not merely artificially signal, an easy contrivance) pleasure at its successes, grief when its valves fuse, be warmed by flattery, be made miserable by its mistakes, be charmed by sex, be angry or depressed when it cannot get what it wants."</p>
-<p class="who">Jefferson, the same oration</p>
-</div>
+> "Not until a machine can write a sonnet or compose a concerto because of thoughts and emotions felt, and not by the chance fall of symbols, could we agree that machine equals brain, that is, not only write it but know that it had written it."
 
-## {.on-stage data-stage="1" data-machine="2" data-view="1946-1954" data-lit="x1949"}
+Geoffrey Jefferson, the Lister Oration, Royal College of Surgeons, the same afternoon
+:::
 
-<div class="pin below wide right" data-year="1949.45">
-<img src="images/times-calculus-to-sonnet.jpg" style="max-height:150px;object-fit:contain">
-<p class="q">"A sonnet written by a machine would probably be better appreciated by another machine."</p>
-<p class="who">Alan Turing, The Times, Saturday 11 June 1949, "Calculus to Sonnet". Maisie was two days old.</p>
-</div>
+## {.stage}
 
-## {.on-stage data-stage="1" data-machine="2" data-view="1946-1954" data-lit="x1949"}
+::: {.pin year=1949.44 side=above width=wide align=right}
+> "No mechanism could feel (and not merely artificially signal, an easy contrivance) pleasure at its successes, grief when its valves fuse, be warmed by flattery, be made miserable by its mistakes, be charmed by sex, be angry or depressed when it cannot get what it wants."
 
-<div class="pin mid wide right" data-year="1949.44">
-<p class="q">What is a brain, that it can feel its way to a sonnet, and know that it has done so?</p>
-<p>The girl and the question began in the same week in the same city. We follow both for seventy-seven years.</p>
-</div>
+Jefferson, the same oration
+:::
 
-## Before her {.on-stage data-stage="1" data-machine="2" data-dim="1"}
+## {.stage}
 
-<div class="cover">
-<div class="two">
-<div><img src="images/ChadwickTable.png"></div>
-<div>
-<h3>Chadwick, 1842</h3>
-<ul>
-<li>Her great-grandmother: Little Ireland, the bend of the Medlock. Typhus at nineteen.</li>
-<li>Her grandmother, 1878: sixty-six.</li>
-<li>Her mother, 1915: eighty-one.</li>
-<li>Water from Longdendale, sewers under the streets, the infirmary, this university: paid for in rooms like this one.</li>
-</ul>
-</div>
-</div>
-</div>
+::: {.pin year=1949.45 side=below width=wide align=right}
+![](images/times-calculus-to-sonnet.jpg){height=150}
 
-::: {.note}
+> "A sonnet written by a machine would probably be better appreciated by another machine."
+
+Alan Turing, The Times, Saturday 11 June 1949, "Calculus to Sonnet". Maisie was two days old.
+:::
+
+## {.stage}
+
+::: {.pin year=1949.44 side=mid width=wide align=right}
+> What is a brain, that it can feel its way to a sonnet, and know that it has done so?
+
+The girl and the question began in the same week in the same city. We follow both for seventy-seven years.
+:::
+
+## Before her {.stage dim="true"}
+
+::: {.cover}
+:::: {.columns}
+::: {.column width="40%"}
+![](images/ChadwickTable.png)
+:::
+::: {.column width="60%"}
+### Chadwick, 1842
+
+- Her great-grandmother: Little Ireland, the bend of the Medlock. Typhus at nineteen.
+- Her grandmother, 1878: sixty-six.
+- Her mother, 1915: eighty-one.
+- Water from Longdendale, sewers under the streets, the infirmary, this university: paid for in rooms like this one.
+:::
+::::
+:::
+
+::: {.notes}
 Table shown is deaths under twenty by class and town; the script's 17 / 20 / 38 are from the average-age table. Dementia is a disease you have to be old enough to catch.
 :::
 
-## {.on-stage data-stage="2" data-machine="6" data-view="1946-1964"}
+## {.stage view="1946-1964" grow="maisie:1960 machine:1962"}
 
-<div class="pin below" data-year="1956">
-<p>Medicine saved the body, and the body lived long enough to lose the person it was carrying.</p>
-<p>When she is two, the BBC puts Jefferson and Turing in a studio to argue about whether machines can think. Nobody on Rochdale Road is listening.</p>
-</div>
+::: {.pin year=1956 side=below}
+Medicine saved the body, and the body lived long enough to lose the person it was carrying.
 
-## 1960: the eleven-plus {.on-stage data-stage="3" data-machine="6" data-view="1946-1972"}
+When she is two, the BBC puts Jefferson and Turing in a studio to argue about whether machines can think. Nobody on Rochdale Road is listening.
+:::
 
-<div class="pin below" data-year="1960">
-<img src="images/11plusQuestion.png" style="max-height:200px;object-fit:contain">
-<p>One Manchester: the bus to [grammar school]. Another: the secondary modern on [street]. Girls' pass rate in her ward: [FIGURE].</p>
-<p>That winter Jefferson dies, at seventy-four.</p>
-</div>
+## 1960: the eleven-plus {.stage view="1946-1972" grow="maisie:1963.5"}
 
-## {.on-stage data-stage="3" data-machine="6" data-view="1946-1972" data-dim="1"}
+::: {.pin year=1960 side=below}
+![](images/11plusQuestion.png){height=200}
 
-<div class="cover">
-<p class="sonnet">That time of year thou mayst in me behold<br>When yellow leaves, or none, or few, do hang<br>Upon those boughs which shake against the cold,<br>Bare ruined choirs, where late the sweet birds sang.</p>
-<p class="who">Sonnet 73, for the O-level. She is fifteen. She can say all fourteen lines in forty seconds without breathing.</p>
-</div>
+One Manchester: the bus to [grammar school]. Another: the secondary modern on [street]. Girls' pass rate in her ward: [FIGURE].
 
-## 1965: Ferranti, Moston {.on-stage data-stage="4" data-machine="7" data-view="1946-1975" data-lit="x1965,b77,b91"}
+That winter Jefferson dies, at seventy-four.
+:::
 
-<div class="pin below wide" data-year="1965">
-<img src="images/ferranti-moston-assembly.jpg" style="max-height:200px">
-<p>Where she passed, she stays on at school. Where she did not, she goes to the assembly line at Ferranti and builds the commercial version of the machine Jefferson and Turing argued over. She never knows this.</p>
-<p>At the bus stop on Moston Lane she starts smoking. [FIGURE] per cent of women her age did.</p>
-</div>
+## {.stage dim="true"}
 
-::: {.note}
+::: {.cover}
+> That time of year thou mayst in me behold<br>When yellow leaves, or none, or few, do hang<br>Upon those boughs which shake against the cold,<br>Bare ruined choirs, where late the sweet birds sang.
+
+Sonnet 73, for the O-level. She is fifteen. She can say all fourteen lines in forty seconds without breathing.
+:::
+
+## 1965: Ferranti, Moston {.stage view="1946-1975" grow="maisie:1972 machine:1966" lit="x1965 b84 b91"}
+
+::: {.pin year=1965 side=below width=wide align=right}
+![](images/ferranti-moston-assembly.jpg){height=200}
+
+Where she passed, she stays on at school. Where she did not, she goes to the assembly line at Ferranti and builds the commercial version of the machine Jefferson and Turing argued over. She never knows this.
+
+At the bus stop on Moston Lane she starts smoking. [FIGURE] per cent of women her age did.
+:::
+
+::: {.notes}
 Moston attribution unverified: check Lavington. Clip images/ferranti-soldering-getty.mp4 available if licensed.
 :::
 
-## Who turns the wheel {.on-stage data-stage="5" data-machine="7" data-view="1955-2015"}
+## Who turns the wheel {.stage view="1955-2015" grow="maisie:2014"}
 
-<div class="pin below wide" data-year="1999">
-<p><b>1999, blood pressure.</b> 165 over 95, found because of a knee. One of her leaves with a prescription and a nurse who rings in March. One of her has no knee, and it sits for fifteen years doing to the small arteries of her brain what Adam Greenstein's laboratory now watches under a microscope.</p>
-<p><b>1989, smoking.</b> A husband's angina; they stop together. Or not.</p>
-<p><b>2009, hearing.</b> A daughter's rota, a morning at Crumpsall. Or the Tuesday club, given up, and a decade of the television getting louder.</p>
-</div>
+::: {.pin year=1999 side=below width=wide align=right}
+**1999, blood pressure.** 165 over 95, found because of a knee. One of her leaves with a prescription and a nurse who rings in March. One of her has no knee, and it sits for fifteen years doing to the small arteries of her brain what Adam Greenstein's laboratory now watches under a microscope.
 
-## {.on-stage data-stage="5" data-machine="7" data-view="1955-2015" data-dim="1"}
+**1989, smoking.** A husband's angina; they stop together. Or not.
 
-<div class="cover">
-<p class="stat">14</p>
-<p class="q small">modifiable risk factors. Taken away, nearly half of all dementia.</p>
-<p class="who">Lancet Commission on dementia, 2024 [UNVERIFIED: figure and interval]. Every one of them is on her branches somewhere. None of these were heroic decisions and almost none were hers.</p>
-</div>
-
-## {.on-stage data-stage="5" data-machine="7" data-view="1955-2030" data-dim="1"}
-
-<div class="cover dark">
-<p class="q">I have no control over any of that.</p>
-<p class="q small">I can vote, I can shout, I can lobby for the poor. Except here.</p>
-</div>
-
-## 2026: twelve minutes {.on-stage data-stage="6" data-machine="8" data-view="1985-2032" data-lit="x2026,b77,b68"}
-
-<div class="pin above wide" data-year="2026">
-<p><b>One GP</b>, in a twelve-minute slot: probably just age, come back if it gets worse. She comes back in 2029 and fails a memory test that confirms what we could have told her three years earlier. CDR 2. No trial. The sonnet gone.</p>
-<p><b>The other GP</b> takes the repeated story seriously and refers her that day to the Brain Health Clinic, three miles from here.</p>
-</div>
-
-## {.on-stage data-stage="6" data-machine="8" data-view="1985-2032" data-lit="x2026,b77" data-dim="1"}
-
-<div class="cover">
-<p class="q">The only time anything can be done about this disease is before the memory test fails. By the time a memory clinic sees you, the memory test has failed.</p>
-<p class="who">The traditional clinic is built back to front. So we built one the right way round.</p>
-</div>
-
-## Before lunch {.on-stage data-stage="6" data-machine="8" data-view="1985-2032" data-lit="x2026,b77" data-dim="1"}
-
-<div class="cover">
-<div class="grid3">
-<div><h4>Alex Cook</h4><p>Blood for pTau217: Alzheimer's disease in the brain years before a memory test fails.</p></div>
-<div><h4>Nicola Kendall</h4><p>Arterial stiffness and blood pressure, found and treated the same morning.</p></div>
-<div><h4>Hala Shokr</h4><p>The vessels at the back of the eye.</p></div>
-<div><h4>Research-grade MRI</h4><p>Before the afternoon.</p></div>
-<div><h4>Lumbar puncture</h4><p>More than two hundred so far.</p></div>
-<div><h4>Same-day change</h4><p>Nearly half leave with a change to blood pressure or statin [figure, if cleared]. In a trial by the summer.</p></div>
-</div>
-</div>
-
-::: {.note}
-You had commented the team grid out in the previous deck; delete this slide if the names should not appear.
+**2009, hearing.** A daughter's rota, a morning at Crumpsall. Or the Tuesday club, given up, and a decade of the television getting louder.
 :::
 
-## {.on-stage data-stage="6" data-machine="8" data-view="1985-2032" data-lit="x2026,b77"}
+## {.stage dim="true"}
 
-<div class="pin below wide" data-year="2026">
-<p class="q">Jefferson's condition for a mind was that it should know what it had done. She knows what hers is doing.</p>
-<p>For four generations nobody in that house off Rochdale Road lived long enough for their brains to betray them. Hers is the first to be looked at, measured, and reported back to its owner as something to take care of.</p>
-</div>
+::: {.cover}
+### 14
 
-## {.on-stage data-stage="6" data-machine="8" data-view="1985-2032" data-lit="x2026,b77" data-dim="1"}
+modifiable risk factors. Taken away, nearly half of all dementia.
 
-<div class="cover">
-<p class="stat">1,000 people, 7 years</p>
-<p class="q small">A pharmaceutical company's study of memory and blood vessels, placed in Manchester rather than Boston or Oxford.</p>
-<p class="who">Because Manchester can find the patients, scan them, bleed them and keep them.</p>
-</div>
+Lancet Commission on dementia, 2024 [UNVERIFIED: figure and interval]. Every one of them is on her branches somewhere. None of these were heroic decisions and almost none were hers.
+:::
 
-## Four women, seventy-seven {.on-stage data-stage="7" data-machine="8" data-view="1946-2045"}
+## {.stage view="1955-2030" dim="true"}
 
-<div class="pin above wide" data-year="1975">
-<p>All of them are her. All of them are alive in Manchester tonight.</p>
-<p><b>68</b>: a home in Blackley; she can still sing. <b>77</b>: she knows what her brain is doing. <b>84</b>: argues with the radio. <b>91</b>: Sonnet 73 at the wedding, standing.</p>
-</div>
+::: {.cover tone=dark}
+> I have no control over any of that.
 
-## {.on-stage data-stage="7" data-machine="8" data-view="1946-2045" data-dim="1"}
+I can vote, I can shout, I can lobby for the poor. Except here.
+:::
 
-<div class="cover">
-<div class="two">
-<div><h3>One pathology</h3><ul><li>The same amyloid</li><li>The same tangles</li><li>The same silted arteries</li></ul></div>
-<div><h3>Not the same event</h3><ul><li>At sixty-eight: twenty-five years of a life</li><li>At ninety-one: two</li><li>That difference is the entire subject of this centre</li></ul></div>
-</div>
-</div>
+## 2026: twelve minutes {.stage view="1985-2032" grow="maisie:2026 machine:2040" lit="x2026 b77 b68"}
 
-## Which branch {.on-stage data-stage="8" data-machine="8" data-view="1946-2045"}
+::: {.pin year=2026 side=above width=wide align=left}
+**One GP**, in a twelve-minute slot: probably just age, come back if it gets worse. She comes back in 2029 and fails a memory test that confirms what we could have told her three years earlier. CDR 2. No trial. The sonnet gone.
 
-<div class="pin above wide" data-year="1975">
-<p>Decided, mostly, before she could vote. Dementia incidence has fallen in England since the 1990s, in the top third by schooling or income and nowhere else [UNVERIFIED: CFAS, stratifier].</p>
-<p>Chadwick's table re-run in 2018: Manchester still at the bottom. It is now a gradient in the age at which the sonnet goes.</p>
-</div>
+**The other GP** takes the repeated story seriously and refers her that day to the Brain Health Clinic, three miles from here.
+:::
 
-## {.on-stage data-stage="8" data-machine="8" data-view="1946-2045" data-dim="1"}
+## {.stage lit="x2026 b77" dim="true"}
 
-<div class="cover">
-<h3>In this room</h3>
-<ul>
-<li>[The other GJBRC groups: one sentence each, named person, one thing, one number.]</li>
-</ul>
-<h3>The ask</h3>
-<ul>
-<li>[X]. It costs [Y]. It will move [N] women a year from the first branch toward the fourth.</li>
-<li>I will come back to a Showcase in [year] and tell you what the number was, whichever way it went.</li>
-</ul>
-</div>
+::: {.cover}
+> The only time anything can be done about this disease is before the memory test fails. By the time a memory clinic sees you, the memory test has failed.
 
-## {.on-stage data-stage="8" data-machine="8" data-view="1946-2045" data-lit="b91"}
+The traditional clinic is built back to front. So we built one the right way round.
+:::
 
-<div class="pin above wide" data-year="2030">
-<p class="q">The infirmary, 1752. This university, 1851. The sewers that let her grandmother reach sixty-six. All of it was paid for in rooms like this one.</p>
-<p>On the branch I would like her to be on, she has fourteen more years with the sonnet.</p>
-</div>
+## Before lunch {.stage lit="x2026 b77" dim="true"}
+
+::: {.cover}
+:::: {.columns}
+::: {.column width="33%"}
+#### Alex Cook
+Blood for pTau217: Alzheimer's disease in the brain years before a memory test fails.
+
+#### Research-grade MRI
+Before the afternoon.
+:::
+::: {.column width="33%"}
+#### Nicola Kendall
+Arterial stiffness and blood pressure, found and treated the same morning.
+
+#### Lumbar puncture
+More than two hundred so far.
+:::
+::: {.column width="33%"}
+#### Hala Shokr
+The vessels at the back of the eye.
+
+#### Same-day change
+Nearly half leave with a change to blood pressure or statin [figure, if cleared]. In a trial by the summer.
+:::
+::::
+:::
+
+## {.stage lit="x2026 b77"}
+
+::: {.pin year=2026 side=below width=wide align=left}
+> Jefferson's condition for a mind was that it should know what it had done. She knows what hers is doing.
+
+For four generations nobody in that house off Rochdale Road lived long enough for their brains to betray them. Hers is the first to be looked at, measured, and reported back to its owner as something to take care of.
+:::
+
+## {.stage lit="x2026 b77" dim="true"}
+
+::: {.cover}
+### 1,000 people, 7 years
+
+A pharmaceutical company's study of memory and blood vessels, placed in Manchester rather than Boston or Oxford.
+
+Because Manchester can find the patients, scan them, bleed them and keep them.
+:::
+
+## Four women, seventy-seven {.stage view="1946-2045" grow="maisie:2040 machine:2040" colours="true" ends="true"}
+
+::: {.pin year=1975 side=above width=wide}
+All of them are her. All of them are alive in Manchester tonight.
+
+**68**: a home in Blackley; she can still sing. **77**: she knows what her brain is doing. **84**: argues with the radio. **91**: Sonnet 73 at the wedding, standing.
+:::
+
+## {.stage dim="true"}
+
+::: {.cover}
+:::: {.columns}
+::: {.column width="50%"}
+### One pathology
+
+- The same amyloid
+- The same tangles
+- The same silted arteries
+:::
+::: {.column width="50%"}
+### Not the same event
+
+- At sixty-eight: twenty-five years of a life
+- At ninety-one: two
+- That difference is the entire subject of this centre
+:::
+::::
+:::
+
+## Which branch {.stage}
+
+::: {.pin year=1975 side=above width=wide}
+Decided, mostly, before she could vote. Dementia incidence has fallen in England since the 1990s, in the top third by schooling or income and nowhere else [UNVERIFIED: CFAS, stratifier].
+
+Chadwick's table re-run in 2018: Manchester still at the bottom. It is now a gradient in the age at which the sonnet goes.
+:::
+
+## {.stage dim="true"}
+
+::: {.cover}
+### In this room
+
+- [The other GJBRC groups: one sentence each, named person, one thing, one number.]
+
+### The ask
+
+- [X]. It costs [Y]. It will move [N] women a year from the first branch toward the fourth.
+- I will come back to a Showcase in [year] and tell you what the number was, whichever way it went.
+:::
+
+## {.stage lit="b91"}
+
+::: {.pin year=2030 side=above width=wide align=left}
+> The infirmary, 1752. This university, 1851. The sewers that let her grandmother reach sixty-six. All of it was paid for in rooms like this one.
+
+On the branch I would like her to be on, she has fourteen more years with the sonnet.
+:::
 
 ## Thank you {.end}
 

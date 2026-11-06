@@ -1,0 +1,67 @@
+/* timeline-stage: theme tokens default from reveal's variables; override --stage-* in your theme. */
+.reveal {
+  --stage-primary: var(--r-main-color, #333);
+  --stage-ink: var(--r-main-color, #333);
+  --stage-accent: var(--r-link-color, #2a76dd);
+  --stage-highlight: var(--r-selection-background-color, #ffb400);
+  --stage-muted: color-mix(in srgb, var(--r-main-color, #333) 40%, transparent);
+  --stage-font: var(--r-main-font, sans-serif);
+  --stage-dim: 0.22;
+  --stage-stage-dim: 0.18;
+}
+
+/* the stage sits behind every slide */
+.reveal .slides .stage { position: absolute; left: 0; top: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0; transition: opacity .5s; }
+.reveal .slides .stage.is-dim { opacity: var(--stage-stage-dim) !important; }
+.reveal .slides .stage-svg { width: 100%; height: 100%; font-family: var(--stage-font); }
+.reveal .slides .stage g, .reveal .slides .stage path, .reveal .slides .stage line, .reveal .slides .stage text { transition: opacity .4s, visibility .4s; }
+
+.st-axisline { stroke: var(--stage-ink); stroke-width: 1.5; opacity: .45; }
+.st-tick { stroke: var(--stage-ink); opacity: .45; }
+.st-year { font-size: 15px; fill: var(--stage-ink); opacity: .6; }
+.st-linename { font-weight: 700; font-size: 22px; fill: var(--stage-ink); opacity: .85; }
+.st-path { stroke-width: 4; }
+.st-strand { stroke-width: 2.5; opacity: .85; }
+.st-event circle { fill: var(--stage-ink); }
+.st-eventlabel { font-size: 14px; fill: var(--stage-ink); opacity: .85; }
+.st-fork line { stroke: var(--stage-highlight); stroke-width: 2; }
+.st-fork.st-emphasis line { stroke: var(--stage-accent); stroke-width: 3; }
+.st-forklabel { font-size: 15px; fill: var(--stage-ink); }
+.st-fork.st-emphasis .st-forklabel { font-size: 18px; font-weight: 700; }
+.st-crossline { stroke: var(--stage-highlight); stroke-width: 2; stroke-dasharray: 6 6; }
+.st-crossmark { fill: #fff; stroke: var(--stage-highlight); stroke-width: 3; }
+.st-crosslabel { font-size: 16px; font-weight: 600; fill: var(--stage-ink); }
+.st-endlabel { font-size: 19px; font-weight: 600; fill: var(--stage-ink); }
+
+/* stage slides: transparent, top-anchored, no padding, regardless of the theme's center setting */
+.reveal .slides section.stage { padding: 0 !important; top: 0 !important; height: 100%; box-sizing: border-box; background: transparent; }
+.reveal .slides section.slide.stage > h2:first-child, .reveal .slides section.slide.stage > h1:first-child, .reveal .slides section.stage > h2:first-child { position: absolute; left: 5.5%; top: 24px; height: auto; margin: 0; display: block; font-size: 34px; line-height: 1.2; }
+
+/* lighting */
+.reveal .slides .stage .is-dim { opacity: var(--stage-dim) !important; }
+
+/* pins: overlays pinned to a year; the plugin sets `left` */
+.reveal .slides section.stage .pin { position: absolute; width: 360px; box-sizing: border-box; background: rgba(255, 255, 255, .96);
+  border: 1.5px solid color-mix(in srgb, var(--stage-ink) 25%, transparent); border-radius: 6px; padding: 14px 18px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, .12); font-size: 17px; line-height: 1.35; color: var(--stage-ink); text-align: left; z-index: 2; }
+.reveal .slides section.stage .pin.side-above { top: 70px; }
+.reveal .slides section.stage .pin.side-mid { top: 230px; }
+.reveal .slides section.stage .pin.side-below { bottom: 36px; }
+.reveal .slides section.stage .pin.width-wide { width: 520px; }
+.reveal .slides section.stage .pin.width-narrow { width: 260px; }
+.reveal .slides section.stage .pin p { margin: 0 0 .4em 0; font-size: 17px; }
+.reveal .slides section.stage .pin p:last-child { margin-bottom: 0; }
+.reveal .slides section.stage .pin img, .reveal .slides section.stage .pin video { width: 100%; max-height: 240px; object-fit: cover; display: block; margin: 0 0 8px 0; }
+.reveal .slides section.stage .pin h3, .reveal .slides section.stage .pin h4 { margin: 0 0 .3em 0; font-size: 21px; line-height: 1.25; }
+.reveal .slides section.stage .pin blockquote { margin: 0; padding: 0; font-weight: 700; font-size: 21px; line-height: 1.25; background: none; border: 0; box-shadow: none; }
+.reveal .slides section.stage .pin ul { margin: 0; padding-left: 1.1em; font-size: 17px; }
+
+/* covers: a large panel over a dimmed stage */
+.reveal .slides section.stage .cover { position: absolute; left: 7%; top: 10%; width: 86%; height: 80%; box-sizing: border-box; overflow: hidden;
+  background: rgba(255, 255, 255, .97); border-radius: 8px; box-shadow: 0 10px 40px rgba(0, 0, 0, .18); padding: 36px 48px; color: var(--stage-ink); text-align: left; z-index: 2; }
+.reveal .slides section.stage .cover.tone-dark { background: var(--stage-ink); color: #fff; }
+.reveal .slides section.stage .cover.tone-dark h1, .reveal .slides section.stage .cover.tone-dark h2, .reveal .slides section.stage .cover.tone-dark h3, .reveal .slides section.stage .cover.tone-dark p, .reveal .slides section.stage .cover.tone-dark li { color: #fff; }
+.reveal .slides section.stage .cover h2, .reveal .slides section.stage .cover h3 { position: static; margin: 0 0 .5em 0; font-size: 36px; }
+.reveal .slides section.stage .cover p, .reveal .slides section.stage .cover li { font-size: 24px; }
+.reveal .slides section.stage .cover img { max-height: 70%; width: auto; max-width: 100%; display: block; }
+.reveal .slides section.stage .cover blockquote { margin: 0; padding: 0; font-weight: 700; font-size: 40px; line-height: 1.2; background: none; border: 0; box-shadow: none; }

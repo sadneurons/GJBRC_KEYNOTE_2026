@@ -1,0 +1,9 @@
+title: timeline-stage
+author: Ross A. Dunne
+version: 0.1.0
+quarto-required: ">=1.4.0"
+contributes:
+  filters:
+    - stage.lua
+  revealjs-plugins:
+    - plugin

@@ -1,0 +1,6 @@
+name: TimelineStage
+script:
+  - layout.js
+  - stage.js
+stylesheet:
+  - stage.css

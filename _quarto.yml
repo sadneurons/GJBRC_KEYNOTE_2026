@@ -10,6 +10,9 @@ project:
 format:
   gjbrc-revealjs:
     embed-resources: false
+    filters:
+      - timeline-stage
+    revealjs-plugins:
+      - timeline-stage
     include-after-body:
       - mwn-bridge.html
-      - stage.html

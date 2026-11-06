@@ -1,0 +1,54 @@
+span: [1946, 2045]
+lines:
+  - id: machine
+    label: the machine
+    start: 1948-06-21
+    colour: "#6d5a8c"
+    strands:
+      - { id: jefferson, label: Jefferson, start: 1949-06-09, end: 1961-01-29 }
+      - { id: turing, label: Turing, start: 1948-10-01, end: 1954-06-07 }
+    meets:
+      - [jefferson, turing, 1949-06-09]
+      - [jefferson, turing, 1952-01-10]
+    events:
+      - { id: baby, year: 1948-06-21, label: "the Baby runs, Coupland Street", side: above }
+      - { id: lister, year: 1949-06-09, label: The Mind of Mechanical Man, on: jefferson, side: above }
+      - { id: times, year: 1949-06-11, label: Calculus to Sonnet, on: turing, side: below }
+      - { id: paper, year: 1950-10-01, label: Computing Machinery and Intelligence, on: turing, side: below }
+      - { id: mark1, year: 1951-02-01, label: Ferranti Mark 1, side: above }
+      - { id: bbc, year: 1952-01-10, label: the BBC broadcast, on: jefferson, side: above }
+      - { id: turing-dies, year: 1954-06-07, label: "Turing dies, Wilmslow", on: turing, side: below, end: true }
+      - { id: jefferson-dies, year: 1961-01-29, label: Jefferson dies, on: jefferson, side: above, end: true }
+      - { id: pocket, year: 2026, label: the machine in your pocket, side: above }
+  - id: maisie
+    label: Maisie
+    start: 1949-06-09
+    forks:
+      - at: 1960
+        label: the eleven-plus
+        children:
+          - id: passed
+            forks:
+              - at: 1965
+                label: she stays on at school
+                children:
+                  - { id: b68, label: diagnosed at 68, end: 2017, colour: muted }
+                  - { id: b77, label: "the Brain Health Clinic, 77", end: 2026, colour: "#00e6cb" }
+          - id: failed
+            forks:
+              - at: 1965
+                label: a wage, a bus stop
+                children:
+                  - { id: b84, label: diagnosed at 84, end: 2033, colour: muted }
+                  - { id: b91, label: "the sonnet, 91", end: 2040, colour: "#fbb109" }
+    forks-on:
+      - { at: 1989, label: "a husband's heart", branches: [b68, b77, b84, b91] }
+      - { at: 1999, label: a knee, branches: [b68, b77, b84, b91] }
+      - { at: 2009, label: a rota, branches: [b68, b77, b84, b91] }
+      - { at: 2026, label: twelve minutes, branches: [b68, b77, b84, b91], emphasis: true }
+    events:
+      - { id: sonnet, year: 1964, label: Sonnet 73, on: failed, side: below }
+crossings:
+  - { id: x1949, a: machine@1949-06-09, b: maisie@1949-06-09, label: the same week }
+  - { id: x1965, a: machine@1965, b: b84@1965, label: she solders the machine }
+  - { id: x2026, a: machine@2026, b: b77@2026, label: the machine meets her in the clinic }
