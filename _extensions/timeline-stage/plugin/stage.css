@@ -6,6 +6,7 @@
   --stage-highlight: var(--r-selection-background-color, #ffb400);
   --stage-muted: color-mix(in srgb, var(--r-main-color, #333) 40%, transparent);
   --stage-font: var(--r-main-font, sans-serif);
+  --stage-panel: var(--r-background-color, #fff);
   --stage-dim: 0.22;
   --stage-stage-dim: 0.18;
 }
@@ -29,7 +30,7 @@
 .st-forklabel { font-size: 15px; fill: var(--stage-ink); }
 .st-fork.st-emphasis .st-forklabel { font-size: 18px; font-weight: 700; }
 .st-crossline { stroke: var(--stage-highlight); stroke-width: 2; stroke-dasharray: 6 6; }
-.st-crossmark { fill: #fff; stroke: var(--stage-highlight); stroke-width: 3; }
+.st-crossmark { fill: var(--stage-panel); stroke: var(--stage-highlight); stroke-width: 3; }
 .st-crosslabel { font-size: 16px; font-weight: 600; fill: var(--stage-ink); }
 .st-endlabel { font-size: 19px; font-weight: 600; fill: var(--stage-ink); }
 
@@ -41,7 +42,7 @@
 .reveal .slides .stage .is-dim { opacity: var(--stage-dim) !important; }
 
 /* pins: overlays pinned to a year; the plugin sets `left` */
-.reveal .slides section.stage .pin { position: absolute; width: 360px; box-sizing: border-box; background: rgba(255, 255, 255, .96);
+.reveal .slides section.stage .pin { position: absolute; width: 360px; box-sizing: border-box; background: color-mix(in srgb, var(--stage-panel) 96%, transparent);
   border: 1.5px solid color-mix(in srgb, var(--stage-ink) 25%, transparent); border-radius: 6px; padding: 14px 18px;
   box-shadow: 0 6px 24px rgba(0, 0, 0, .12); font-size: 17px; line-height: 1.35; color: var(--stage-ink); text-align: left; z-index: 2; }
 .reveal .slides section.stage .pin.side-above { top: 70px; }
@@ -58,7 +59,7 @@
 
 /* covers: a large panel over a dimmed stage */
 .reveal .slides section.stage .cover { position: absolute; left: 7%; top: 10%; width: 86%; height: 80%; box-sizing: border-box; overflow: hidden;
-  background: rgba(255, 255, 255, .97); border-radius: 8px; box-shadow: 0 10px 40px rgba(0, 0, 0, .18); padding: 36px 48px; color: var(--stage-ink); text-align: left; z-index: 2; }
+  background: color-mix(in srgb, var(--stage-panel) 97%, transparent); border-radius: 8px; box-shadow: 0 10px 40px rgba(0, 0, 0, .18); padding: 36px 48px; color: var(--stage-ink); text-align: left; z-index: 2; }
 .reveal .slides section.stage .cover.tone-dark { background: var(--stage-ink); color: #fff; }
 .reveal .slides section.stage .cover.tone-dark h1, .reveal .slides section.stage .cover.tone-dark h2, .reveal .slides section.stage .cover.tone-dark h3, .reveal .slides section.stage .cover.tone-dark p, .reveal .slides section.stage .cover.tone-dark li { color: #fff; }
 .reveal .slides section.stage .cover h2, .reveal .slides section.stage .cover h3 { position: static; margin: 0 0 .5em 0; font-size: 36px; }

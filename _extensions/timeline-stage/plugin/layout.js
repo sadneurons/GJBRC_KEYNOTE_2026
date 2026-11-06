@@ -71,7 +71,7 @@
       });
       (L.events || []).forEach(function (E) {
         var ev = { id: E.id, kind: 'event', line: L.id, parent: E.on || L.id, label: E.label || '',
-          year: toDecimalYear(E.year), side: E.side || 'above', end: !!E.end };
+          year: toDecimalYear(E.year), side: E.side || 'above', end: !!E.end, lane: E.lane == null ? null : +E.lane };
         see(ev.year);
         index[ev.id] = ev; (index[ev.parent] || line).events.push(ev.id);
       });
@@ -82,7 +82,7 @@
       index[x.id] = x; crossings.push(x.id);
     });
     var span = raw.span ? raw.span.map(toDecimalYear) : [Math.floor(minY) - 2, Math.ceil(maxY) + 2];
-    return { span: span, lines: lines, crossings: crossings, index: index };
+    return { span: span, lines: lines, crossings: crossings, index: index, options: raw.options || {} };
   }
 
   // ---------------------------------------------------------------- validate
@@ -94,9 +94,16 @@
       if (ids[id]) err(path, 'duplicate id "' + id + '"'); else ids[id] = path;
     }
     var years = {};  // id -> [start, end|null]
+    function date(v, path, key) {
+      if (v == null) { err(path, 'missing ' + key); return NaN; }
+      var y = toDecimalYear(v);
+      if (!isFinite(y)) err(path, key + ' "' + v + '" is not a year or ISO date');
+      return y;
+    }
     (raw.lines || []).forEach(function (L, i) {
       var p = 'lines[' + i + ']';
       claim(L.id, p);
+      date(L.start, p, 'start');
       var ls = toDecimalYear(L.start), le = L.end == null ? null : toDecimalYear(L.end);
       years[L.id] = [ls, le];
       (L.strands || []).forEach(function (S, j) {
@@ -227,9 +234,11 @@
     }
     // kinks on every node along the path
     path.forEach(function (pid) {
-      var n = model.index[pid], sign = siblingIndex(model, pid) % 2 === 0 ? -1 : 1;
+      var n = model.index[pid], si = siblingIndex(model, pid), ki = 0;
       n.forks.forEach(function (f) {
-        if (f.kink && year >= f.at) y += sign * kink * smooth((year - f.at) / ease);
+        if (!f.kink) return;
+        var sign = (si + ki) % 2 === 0 ? -1 : 1; ki += 1;
+        if (year >= f.at) y += sign * kink * smooth((year - f.at) / ease);
       });
     });
     return y;
@@ -289,14 +298,14 @@
   function assignLanes(items, opts) {
     var gap = (opts && opts.gap != null) ? opts.gap : 8, maxLanes = (opts && opts.maxLanes) || 3;
     var order = items.map(function (it, i) { return i; }).sort(function (a, b) { return items[a].x - items[b].x; });
-    var ends = [];
+    var ends = {};   // group -> [lane end x]
     order.forEach(function (i) {
-      var it = items[i], lane = -1;
-      for (var k = 0; k < maxLanes; k++) {
-        if (ends[k] == null || ends[k] + gap <= it.x) { lane = k; break; }
-      }
+      var it = items[i], grp = it.group == null ? '' : String(it.group), e = ends[grp] || (ends[grp] = []);
+      var lane = -1;
+      if (it.lane != null && it.lane >= 0) lane = it.lane;             // preset by the author
+      else for (var k = 0; k < maxLanes; k++) { if (e[k] == null || e[k] + gap <= it.x) { lane = k; break; } }
       it.lane = lane;
-      if (lane >= 0) ends[lane] = it.x + it.width;
+      if (lane >= 0) e[lane] = Math.max(e[lane] || -Infinity, it.x + it.width);
     });
     return items;
   }

@@ -42,7 +42,11 @@ end
 
 local function convert_dates(node, key)
   if type(node) ~= "table" then
-    if key and DATE_KEYS[key] then return to_decimal_year(node) end
+    if key and DATE_KEYS[key] and (type(node) == "string" or type(node) == "number") then
+      local y = to_decimal_year(node)
+      if y == nil then return "INVALID:" .. tostring(node) end
+      return y
+    end
     return node
   end
   local is_list = #node > 0
@@ -82,30 +86,50 @@ local function validate(data)
     local id, yr = tostring(ref):match("^(.-)@(.+)$")
     return id, tonumber(yr)
   end
+  -- a date that failed to parse arrives as "INVALID:<text>"; a missing one as nil
+  local function date(v, path, key, required)
+    if v == nil then
+      if required then err(path, "missing " .. key) end
+      return nil
+    end
+    if type(v) == "string" then
+      local bad = v:match("^INVALID:(.*)$")
+      err(path, key .. ' "' .. (bad or v) .. '" is not a year or ISO date')
+      return nil
+    end
+    return v
+  end
   for i, L in ipairs(data.lines or {}) do
     local p = "lines[" .. (i - 1) .. "]"
     claim(L.id, p)
-    years[L.id] = { L.start, L["end"] }
+    local ls, le = date(L.start, p, "start", true), date(L["end"], p, "end")
+    years[L.id] = { ls or -math.huge, le }
     for j, S in ipairs(L.strands or {}) do
-      claim(S.id, p .. ".strands[" .. (j - 1) .. "]")
-      years[S.id] = { S.start, S["end"] }
+      local sp = p .. ".strands[" .. (j - 1) .. "]"
+      claim(S.id, sp)
+      years[S.id] = { date(S.start, sp, "start", true) or -math.huge, date(S["end"], sp, "end") }
     end
     local function walk(node, nstart, nend, path)
       for k, F in ipairs(node.forks or {}) do
         local fp = path .. ".forks[" .. (k - 1) .. "]"
-        if F.at < nstart then err(fp, "fork at " .. F.at .. " is before branch start " .. nstart) end
-        if nend ~= nil and F.at > nend then err(fp, "fork at " .. F.at .. " is after branch end " .. nend) end
+        local at = date(F.at, fp, "at", true)
+        if at then
+          if at < nstart then err(fp, "fork at " .. at .. " is before branch start " .. nstart) end
+          if nend ~= nil and at > nend then err(fp, "fork at " .. at .. " is after branch end " .. nend) end
+        end
         for c, C in ipairs(F.children or {}) do
           local cp = fp .. ".children[" .. (c - 1) .. "]"
           claim(C.id, cp)
-          if C["end"] ~= nil and C["end"] < F.at then err(cp, "end " .. C["end"] .. " is before fork at " .. F.at) end
-          years[C.id] = { F.at, C["end"] }
-          walk(C, F.at, C["end"], cp)
+          local ce = date(C["end"], cp, "end")
+          if at and ce ~= nil and ce < at then err(cp, "end " .. ce .. " is before fork at " .. at) end
+          years[C.id] = { at or nstart, ce }
+          walk(C, at or nstart, ce, cp)
         end
       end
     end
-    walk(L, L.start, L["end"], p)
+    walk(L, ls or -math.huge, le, p)
     for k, K in ipairs(L["forks-on"] or {}) do
+      date(K.at, p .. ".forks-on[" .. (k - 1) .. "]", "at", true)
       for _, bid in ipairs(K.branches or {}) do
         if not years[bid] then err(p .. ".forks-on[" .. (k - 1) .. "]", 'unknown id "' .. bid .. '"') end
       end
@@ -113,6 +137,7 @@ local function validate(data)
     for k, E in ipairs(L.events or {}) do
       local ep = p .. ".events[" .. (k - 1) .. "]"
       claim(E.id, ep)
+      date(E.year, ep, "year", true)
       if E.on and not years[E.on] then err(ep, 'unknown id "' .. E.on .. '"') end
     end
     for k, M in ipairs(L.meets or {}) do
@@ -128,6 +153,8 @@ local function validate(data)
       local id, yr = parse_ref(X[k])
       if not id or not years[id] then
         err(p, 'unknown id "' .. tostring(id) .. '"')
+      elseif yr == nil then
+        err(p, 'crossing endpoint "' .. tostring(X[k]) .. '" is not a year or ISO date')
       else
         local y = years[id]
         if yr < y[1] or (y[2] ~= nil and yr > y[2]) then err(p, 'crossing endpoint "' .. tostring(X[k]) .. '" is outside that id\'s years') end

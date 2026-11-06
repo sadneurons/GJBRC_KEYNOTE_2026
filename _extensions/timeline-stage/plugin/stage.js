@@ -24,7 +24,9 @@
     var model = L.normalise(raw);
     var cfg = reveal.getConfig(), W = cfg.width || 1280, H = cfg.height || 720;
     var LEFT = 0.055 * W, RIGHT = 0.055 * W, AXIS_Y = 0.84 * H;
-    var geom = L.layout(model, { height: H, top: 0.12 * H, bottom: 0.78 * H });
+    var lo = { height: H, top: 0.12 * H, bottom: 0.78 * H };
+    Object.keys(model.options || {}).forEach(function (k) { lo[k] = model.options[k]; });
+    var geom = L.layout(model, lo);
 
     // ---------------------------------------------------------------- DOM
     var root = document.createElement('div'); root.className = 'stage';
@@ -135,7 +137,7 @@
         var t = e.g.lastChild, right = px > W - 300, w = L.textWidth(n.label, 14);
         t.setAttribute('x', px + (right ? -10 : 8)); t.setAttribute('text-anchor', right ? 'end' : 'start');
         e.px = px; e.py = py;
-        if (on) evItems[n.side === 'below' ? 'below' : 'above'].push({ x: right ? px - 10 - w : px + 8, width: w, e: e });
+        if (on) evItems[n.side === 'below' ? 'below' : 'above'].push({ x: right ? px - 10 - w : px + 8, width: w, e: e, group: n.parent, lane: n.lane });
       });
       ['above', 'below'].forEach(function (side) {
         L.assignLanes(evItems[side], { gap: 10, maxLanes: 3 }).forEach(function (it) {
@@ -167,7 +169,7 @@
         tx.style.opacity = lane < 0 ? 0 : 1;
       });
       crossings.forEach(function (c) {
-        var n = c.node, on = gf(n.a.id) >= n.a.year - 0.1 && gf(n.b.id) >= n.b.year - 0.1 && n.a.year >= view[0] - 0.5 && n.a.year <= view[1] + 0.5;
+        var n = c.node, on = gf(n.a.id) >= n.a.year - 0.1 && gf(n.b.id) >= n.b.year - 0.1 && Math.max(n.a.year, n.b.year) >= view[0] - 0.5 && Math.min(n.a.year, n.b.year) <= view[1] + 0.5;
         show(c.g, on);
         var ax = x(n.a.year), bx = x(n.b.year), ay = L.yFor(geom, model, n.a.id, n.a.year, { span: span }), by = L.yFor(geom, model, n.b.id, n.b.year, { span: span });
         var ln = c.g.childNodes[0], mk = c.g.childNodes[1], tx = c.g.childNodes[2];
@@ -256,6 +258,7 @@
       var sec = reveal.getCurrentSlide(), idx = sections.indexOf(sec);
       var st = idx >= 0 ? states[idx] : null;
       root.style.opacity = st ? 1 : 0;
+      if (!st) root.classList.remove('is-dim');
       if (st) { apply(st, first || instant === true); placePins(sec, st); }
       first = false;
     }
