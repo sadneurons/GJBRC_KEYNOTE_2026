@@ -7,7 +7,7 @@ date-format: "DD MMMM YYYY"
 format: gjbrc-revealjs
 ---
 
-## {.stage view="1946-1954" grow="machine:1949.3 maisie:1949.7" lit="x1949" colours="false" ends="false"}
+## {.stage view="1946-1954" grow="machine:1949.3 maisie:1949.7" colours="false" ends="false"}
 
 ## {.stage grow="machine:1949.7"}
 

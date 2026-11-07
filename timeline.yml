@@ -62,5 +62,4 @@ lines:
       - { at: 1965, label: stays on at school, branches: [grammar] }
 
 crossings:
-  - { id: x1949, a: machine@1949-06-09, b: maisie@1949-06-09, label: the same week }
   - { id: x1965, a: machine@1965, b: modern-by-choice@1965, label: she solders the machine }
