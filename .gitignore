@@ -7,3 +7,5 @@ index_files/
 **/*.quarto_ipynb
 references/foresight/*.pdf
 references/foresight/*.PDF
+.pytest_cache/
+shots/
