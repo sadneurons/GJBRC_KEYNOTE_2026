@@ -23,9 +23,9 @@ lines:
 
   - id: maisie
     label: Maisie
-    start: 1949-06-09
+    start: 1948-06-21
     events:
-      - { id: born, year: 1949-06-09, label: "born at home, off Rochdale Road", side: below }
+      - { id: born, year: 1948-06-21, label: "born at home, off Rochdale Road", side: below }
     forks:
       # 1951: the family keeps growing, or doesn't
       - at: 1951
