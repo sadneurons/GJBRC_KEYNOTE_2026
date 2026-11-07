@@ -128,18 +128,29 @@
         paths[id].setAttribute('d', L.samplePath(geom, model, id, view, gf(id), x, { end: flags.ends ? undefined : null }));
         paths[id].style.stroke = colourOf(flags.colours || node.kind !== 'branch' ? node.colour : model.index[node.line].colour);
       });
+      var angled = (model.options && model.options.eventLabels) !== 'horizontal';
       var evItems = { above: [], below: [] };
       events.forEach(function (e) {
         var n = e.node, on = gf(n.parent) >= n.year - 0.05 && n.year >= view[0] - 0.5 && n.year <= view[1] + 0.5;
         show(e.g, on);
         var px = x(n.year), py = L.yFor(geom, model, n.parent, n.year, { span: span });
         e.g.firstChild.setAttribute('cx', px); e.g.firstChild.setAttribute('cy', py);
-        var t = e.g.lastChild, right = px > W - 300, w = L.textWidth(n.label, 14);
-        t.setAttribute('x', px + (right ? -10 : 8)); t.setAttribute('text-anchor', right ? 'end' : 'start');
+        var t = e.g.lastChild;
         e.px = px; e.py = py;
+        if (angled) {
+          // the label rises into the event from the lower left, at 45 degrees
+          t.setAttribute('text-anchor', 'end');
+          t.setAttribute('x', px - 9); t.setAttribute('y', py + 9);
+          t.setAttribute('transform', 'rotate(-45 ' + px + ' ' + py + ')');
+          t.style.opacity = 1;
+          return;
+        }
+        t.removeAttribute('transform');
+        var right = px > W - 300, w = L.textWidth(n.label, 14);
+        t.setAttribute('x', px + (right ? -10 : 8)); t.setAttribute('text-anchor', right ? 'end' : 'start');
         if (on) evItems[n.side === 'below' ? 'below' : 'above'].push({ x: right ? px - 10 - w : px + 8, width: w, e: e, group: n.parent, lane: n.lane });
       });
-      ['above', 'below'].forEach(function (side) {
+      if (!angled) ['above', 'below'].forEach(function (side) {
         L.assignLanes(evItems[side], { gap: 10, maxLanes: 3 }).forEach(function (it) {
           var t = it.e.g.lastChild, lane = it.lane;
           t.style.opacity = lane < 0 ? 0 : 1;
