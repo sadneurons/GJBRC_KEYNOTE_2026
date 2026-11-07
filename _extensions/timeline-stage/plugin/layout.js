@@ -371,7 +371,21 @@
     return out;
   }
 
-  return { toDecimalYear: toDecimalYear, parseRef: parseRef, normalise: normalise, validate: validate,
+  // items: [{ x }] -> same objects with .rank: 0 for the first of a cluster, 1, 2, ... for each
+  // later item within `gap` px of the previous one. Used to stack labels that would overlap.
+  function jitterRanks(items, opts) {
+    var gap = (opts && opts.gap) || 20;
+    var order = items.map(function (it, i) { return i; }).sort(function (a, b) { return items[a].x - items[b].x; });
+    var prevX = -Infinity, rank = 0;
+    order.forEach(function (i) {
+      var it = items[i];
+      rank = (it.x - prevX < gap) ? rank + 1 : 0;
+      it.rank = rank; prevX = it.x;
+    });
+    return items;
+  }
+
+  return { toDecimalYear: toDecimalYear, parseRef: parseRef, normalise: normalise, validate: validate, jitterRanks: jitterRanks,
     layout: layout, offsetAt: offsetAt, yAt: yAt, smooth: smooth, leaves: leaves, realChildren: realChildren, ancestry: ancestry,
     xScale: xScale, strandY: strandY, yFor: yFor, samplePath: samplePath, textWidth: textWidth, assignLanes: assignLanes,
     resolveStates: resolveStates, growFor: growFor, litSet: litSet };

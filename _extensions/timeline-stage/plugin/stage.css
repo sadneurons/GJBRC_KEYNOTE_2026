@@ -25,6 +25,7 @@
 .st-strand { stroke-width: 2.5; opacity: .85; }
 .st-event circle { fill: var(--stage-ink); }
 .st-eventlabel { font-size: 14px; fill: var(--stage-ink); opacity: .85; }
+.st-leader { stroke: var(--stage-ink); stroke-width: 1; opacity: .45; }
 .st-fork line { stroke: var(--stage-highlight); stroke-width: 2; }
 .st-fork.st-emphasis line { stroke: var(--stage-accent); stroke-width: 3; }
 .st-forklabel { font-size: 15px; fill: var(--stage-ink); }

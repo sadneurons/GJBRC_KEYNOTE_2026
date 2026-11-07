@@ -60,7 +60,7 @@
       var n = model.index[id];
       if (n.kind !== 'event') return;
       var ge = el('g', { class: 'st-event', 'data-id': id });
-      ge.appendChild(el('circle', { r: n.end ? 6 : 5 })); ge.appendChild(el('text', { class: 'st-eventlabel' }, n.label));
+      ge.appendChild(el('circle', { r: n.end ? 6 : 5 })); ge.appendChild(el('line', { class: 'st-leader' })); ge.appendChild(el('text', { class: 'st-eventlabel' }, n.label));
       events.push({ node: n, g: ge }); g.events.appendChild(ge);
     });
     var forks = [], seenKinks = {};
@@ -136,20 +136,30 @@
         var px = x(n.year), py = L.yFor(geom, model, n.parent, n.year, { span: span });
         e.g.firstChild.setAttribute('cx', px); e.g.firstChild.setAttribute('cy', py);
         var t = e.g.lastChild;
-        e.px = px; e.py = py;
-        if (angled) {
-          // the label rises into the event from the lower left, at 45 degrees
-          t.setAttribute('text-anchor', 'end');
-          t.setAttribute('x', px - 9); t.setAttribute('y', py + 9);
-          t.setAttribute('transform', 'rotate(-45 ' + px + ' ' + py + ')');
-          t.style.opacity = 1;
-          return;
-        }
+        e.px = px; e.py = py; e.on = on;
+        if (angled) return;
         t.removeAttribute('transform');
         var right = px > W - 300, w = L.textWidth(n.label, 14);
         t.setAttribute('x', px + (right ? -10 : 8)); t.setAttribute('text-anchor', right ? 'end' : 'start');
         if (on) evItems[n.side === 'below' ? 'below' : 'above'].push({ x: right ? px - 10 - w : px + 8, width: w, e: e, group: n.parent, lane: n.lane });
       });
+      if (angled) {
+        // labels rise into the event at 45 degrees; events closer than a label's thickness stack
+        // down-right in parallel, each with a leader back to its dot
+        var shown = events.filter(function (e) { return e.on; }).map(function (e) { return { x: e.px, e: e }; });
+        L.jitterRanks(shown, { gap: 20 });
+        events.forEach(function (e) {
+          var t = e.g.lastChild, ld = e.g.childNodes[1], k = 0;
+          shown.forEach(function (it) { if (it.e === e) k = it.rank; });
+          var dx = k * 17, dy = k * 17, ax = e.px + dx, ay = e.py + dy;
+          t.setAttribute('text-anchor', 'end');
+          t.setAttribute('x', ax - 9); t.setAttribute('y', ay + 9);
+          t.setAttribute('transform', 'rotate(-45 ' + ax + ' ' + ay + ')');
+          t.style.opacity = 1;
+          ld.setAttribute('x1', e.px); ld.setAttribute('y1', e.py); ld.setAttribute('x2', ax - 3); ld.setAttribute('y2', ay - 3);
+          ld.style.opacity = k > 0 ? 1 : 0;
+        });
+      }
       if (!angled) ['above', 'below'].forEach(function (side) {
         L.assignLanes(evItems[side], { gap: 10, maxLanes: 3 }).forEach(function (it) {
           var t = it.e.g.lastChild, lane = it.lane;
