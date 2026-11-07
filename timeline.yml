@@ -11,6 +11,7 @@ lines:
       - [jefferson, turing, 1949-06-09]
       - [jefferson, turing, 1952-01-10]
     events:
+      - { id: baby, year: 1948-06-21, label: "the Manchester Baby runs its first program", side: above }
       - { id: lister, year: 1949-06-09, label: The Mind of Mechanical Man, on: jefferson, side: above }
       - { id: times, year: 1949-06-11, label: Calculus to Sonnet, on: turing, side: below }
       - { id: paper, year: 1950-10-01, label: Computing Machinery and Intelligence, on: turing, side: below }
