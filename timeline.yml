@@ -27,6 +27,11 @@ lines:
     start: 1948-06-21
     events:
       - { id: born, year: 1948-06-21, label: "born at home, off Rochdale Road", side: below }
+      - { id: child-grammar, year: 1978, label: "first child, at thirty", on: grammar }
+      - { id: child-ferranti, year: 1969, label: "first child, at twenty-one", on: ferranti }
+      - { id: child-ferranti-s, year: 1969, label: "first child, at twenty-one", on: ferranti-smokes }
+      - { id: child-machinist, year: 1968, label: "first child, at twenty", on: machinist }
+      - { id: child-machinist-s, year: 1968, label: "first child, at twenty", on: machinist-smokes }
     forks:
       # 1951: the family keeps growing, or doesn't
       - at: 1951
@@ -48,7 +53,15 @@ lines:
                         label: "Ferranti, the production line"
                         children:
                           - { id: ferranti, label: never smokes }
-                          - { id: ferranti-smokes, label: "smokes, at the bus stop on Moston Lane" }
+                          - id: ferranti-smokes
+                            label: "smokes, at the bus stop on Moston Lane"
+                            forks:
+                              # 1989: a husband's angina
+                              - at: 1989
+                                label: a husband's angina
+                                children:
+                                  - { id: ferranti-quits, label: they stop together }
+                                  - { id: ferranti-still, label: she doesn't }
           - id: large-family
             label: six more
             forks:
@@ -61,4 +74,5 @@ lines:
       # the same exam, a formality in the large family
       - { at: 1960, label: fails the eleven-plus, branches: [large-family] }
       - { at: 1965, label: stays on at school, branches: [grammar] }
+      - { at: 1989, label: never stops, branches: [machinist-smokes] }
 
