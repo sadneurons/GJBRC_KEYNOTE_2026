@@ -10,7 +10,7 @@ format: gjbrc-revealjs
 ## {.stage view="1946-1954" grow="machine:1948.6" colours="false" ends="false"}
 
 ::: {.pin year=1948.47 side=mid align=right}
-**21 June 1948.** In a room on Coupland Street, the Manchester Baby runs the first program ever held in electronic memory. Freddie Williams and Tom Kilburn built it. The newspapers call it an electronic brain.
+**21 June 1948.** In a room on Coupland Street, the Manchester Baby built by Freddie Williams and Tom Kilburn runs the first program ever held in electronic memory.  The newspapers call it an "electronic brain".
 :::
 
 ## {.stage grow="machine:1949.3"}
@@ -69,10 +69,10 @@ Alan Turing, in The Times, Saturday 11 June 1949, under the heading "Calculus to
 
 ## {.stage view="1946-1968" grow="maisie:1963" lit="maisie"}
 
-::: {.pin year=1960 side=below align=right}
-![](images/11plusQuestion.png){height=200}
+::: {.pin year=1960 side=below align=right width=wide}
+![](images/11plusQuestion.png)
 
-**1960, the eleven-plus.** In the small family she passes, and one of her takes the bus to [grammar school] while the other walks to the secondary modern on [street] all the same. In the large family she fails, and walks to the same school.
+**1960, the eleven-plus.** In the small family she passes, and one of her takes the bus to grammar school while the other Maisie walks to the secondary modern.
 :::
 
 ## {.stage view="1946-1972" grow="maisie:1968 machine:1966" lit="maisie"}

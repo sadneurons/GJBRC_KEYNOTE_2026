@@ -53,7 +53,8 @@
 .reveal .slides section.stage .pin.width-narrow { width: 260px; }
 .reveal .slides section.stage .pin p { margin: 0 0 .4em 0; font-size: 17px; }
 .reveal .slides section.stage .pin p:last-child { margin-bottom: 0; }
-.reveal .slides section.stage .pin img, .reveal .slides section.stage .pin video { width: 100%; max-height: 240px; object-fit: cover; display: block; margin: 0 0 8px 0; }
+.reveal .slides section.stage .pin img, .reveal .slides section.stage .pin video { width: 100%; max-height: 240px; object-fit: contain; display: block; margin: 0 0 8px 0; }
+.reveal .slides section.stage .pin img[height] { max-height: none; width: auto; max-width: 100%; }
 .reveal .slides section.stage .pin h3, .reveal .slides section.stage .pin h4 { margin: 0 0 .3em 0; font-size: 21px; line-height: 1.25; }
 .reveal .slides section.stage .pin blockquote { margin: 0; padding: 0; font-weight: 700; font-size: 21px; line-height: 1.25; background: none; border: 0; box-shadow: none; }
 .reveal .slides section.stage .pin ul { margin: 0; padding-left: 1.1em; font-size: 17px; }
