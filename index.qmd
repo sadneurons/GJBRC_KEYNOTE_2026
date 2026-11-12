@@ -53,7 +53,7 @@ Alan Turing, in The Times, Saturday 11 June 1949, under the heading "Calculus to
 **January 1961.** Jefferson dies, at seventy-four. In a postscript the year before, he had called Turing his most ingenious colleague.
 :::
 
-## {.stage view="1946-1954" grow="maisie:1949" lit="maisie"}
+## {.stage view="1946-1961" grow="maisie:1949" lit="maisie"}
 
 ::: {.pin year=1948.47 side=mid align=right}
 ![](images/Harpurhey1949.jpg)
@@ -61,13 +61,13 @@ Alan Turing, in The Times, Saturday 11 June 1949, under the heading "Calculus to
 **21 June 1948.** Maisie is born at home in Harpurhey, in a two-up two-down off Rochdale Road.
 :::
 
-## {.stage view="1946-1962" grow="maisie:1954" lit="maisie"}
+## {.stage grow="maisie:1954"}
 
 ::: {.pin year=1951 side=below align=right}
 **1951.** In one house off Rochdale Road a second child arrives, and that is the family. In another, a second arrives, then a third, and by 1960 there are eight of them in the same two rooms.
 :::
 
-## {.stage view="1946-1968" grow="maisie:1963" lit="maisie"}
+## {.stage view="1950-1965" grow="maisie:1963" lit="maisie"}
 
 ::: {.pin year=1960 side=below align=right width=wide}
 ![](images/11plusQuestion.png)
@@ -75,7 +75,7 @@ Alan Turing, in The Times, Saturday 11 June 1949, under the heading "Calculus to
 **1960, the eleven-plus.** In the small family she passes, and one of her takes the bus to grammar school while the other Maisie walks to the secondary modern.
 :::
 
-## {.stage view="1946-1972" grow="maisie:1968 machine:1966" lit="maisie"}
+## {.stage view="1955-1970" grow="maisie:1968 machine:1966" lit="maisie"}
 
 ::: {.pin year=1965 side=below align=right}
 ![](images/ferranti-moston-assembly.jpg){height=200}
@@ -83,13 +83,13 @@ Alan Turing, in The Times, Saturday 11 June 1949, under the heading "Calculus to
 **1965, sixteen.** One stays on at school. One goes to the production line at Ferranti in Moston, where the commercial version of the machine upstairs is built. One takes a machinist's job elsewhere. For the two who go to work, the wait at the bus stop always comes with a cigarette.
 :::
 
-## {.stage view="1946-1982" grow="maisie:1980" lit="maisie"}
+## {.stage view="1966-1981" grow="maisie:1980" lit="maisie"}
 
 ::: {.pin year=1978 side=below align=left}
 **Children.** The two who went to work are mothers at twenty; the grammar-school girl at thirty.
 :::
 
-## {.stage view="1960-1995" grow="maisie:1992" lit="maisie"}
+## {.stage view="1978-1993" grow="maisie:1992" lit="maisie"}
 
 ::: {.pin year=1989 side=below align=right}
 **1989.** A husband's angina. One of the smokers stops with him. One never does.
