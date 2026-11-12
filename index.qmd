@@ -113,6 +113,18 @@ Alan Turing, in The Times, Saturday 11 June 1949, under the heading "Calculus to
 **2012.** The Tuesday club, given up.
 :::
 
+## {.stage view="2014-2029" grow="maisie:2026.4" lit="maisie"}
+
+::: {.pin year=2026.2 side=below align=left}
+**2026.** She tells the Ferranti story twice in one afternoon. Her daughter books a GP appointment. Twelve minutes.
+:::
+
+## {.stage grow="maisie:2028" lit="maisie"}
+
+::: {.pin year=2027 side=below align=left}
+**Referred.** To a memory clinic, or to the Brain Health Clinic.
+:::
+
 ## {.stage}
 
 ##

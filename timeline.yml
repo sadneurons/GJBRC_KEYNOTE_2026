@@ -67,7 +67,23 @@ lines:
                                       - at: 2009
                                         label: hearing
                                         children:
-                                          - { id: hearing-aids, label: "hearing aids; a daughter's morning at Crumpsall" }
+                                          - id: hearing-aids
+                                            label: "hearing aids; a daughter's morning at Crumpsall"
+                                            forks:
+                                              # 2026: twelve minutes with a GP
+                                              - at: 2026.2
+                                                label: the GP, twelve minutes
+                                                emphasis: true
+                                                children:
+                                                  - { id: reassured, label: "probably just ageing; come back if it gets worse" }
+                                                  - id: referred
+                                                    label: referred that day
+                                                    forks:
+                                                      - at: 2027
+                                                        label: which clinic
+                                                        children:
+                                                          - { id: matrs, label: the memory clinic (MATRS) }
+                                                          - { id: bhc, label: the Brain Health Clinic, colour: "#00e6cb" }
                                           - { id: hearing-none, label: no hearing aids }
                                   - { id: ferranti-still, label: she doesn't }
           - id: large-family
