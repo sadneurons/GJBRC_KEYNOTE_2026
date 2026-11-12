@@ -363,8 +363,13 @@
       ancestry(model, id).forEach(function (a) { out.add(a); });
       if (n.kind === 'line') {
         n.strands.forEach(function (s) { out.add(s); });
-        n.events.forEach(function (e) { out.add(e); });
         n.strands.forEach(function (s) { model.index[s].events.forEach(function (e) { out.add(e); }); });
+        // the whole tree under the line, with every branch's events
+        (function walk(b) {
+          out.add(b.id);
+          (b.events || []).forEach(function (e) { out.add(e); });
+          realChildren(b).forEach(function (c) { walk(model.index[c]); });
+        })(n);
       }
       if (n.events) n.events.forEach(function (e) { out.add(e); });
     });
@@ -376,11 +381,11 @@
   function jitterRanks(items, opts) {
     var gap = (opts && opts.gap) || 20;
     var order = items.map(function (it, i) { return i; }).sort(function (a, b) { return items[a].x - items[b].x; });
-    var prevX = -Infinity, rank = 0;
+    var lastX = [];   // rank -> x of the last label given that rank
     order.forEach(function (i) {
-      var it = items[i];
-      rank = (it.x - prevX < gap) ? rank + 1 : 0;
-      it.rank = rank; prevX = it.x;
+      var it = items[i], r = 0;
+      while (lastX[r] != null && it.x - lastX[r] < gap) r += 1;
+      it.rank = r; lastX[r] = it.x;
     });
     return items;
   }

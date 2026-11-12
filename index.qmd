@@ -7,17 +7,27 @@ date-format: "DD MMMM YYYY"
 format: gjbrc-revealjs
 ---
 
-## {.stage view="1946-1954" grow="machine:1949.3 maisie:1949.7" colours="false" ends="false"}
+<!-- Part one: the machine, 1948 to 1961. Maisie is not drawn yet. -->
+
+## {.stage view="1946-1954" grow="machine:1948.6" colours="false" ends="false"}
+
+## {.stage grow="machine:1949.3"}
 
 ## {.stage grow="machine:1949.7"}
 
 ## {.stage view="1946-1956" grow="machine:1954.6"}
 
-## {.stage view="1946-1962" grow="maisie:1954 machine:1962"}
+## {.stage view="1946-1962" grow="machine:1961.2"}
 
-## {.stage view="1946-1968" grow="maisie:1963"}
+<!-- Part two: Maisie. The machine stays on the stage, greyed out, until it meets her again. -->
 
-## {.stage view="1946-1972" grow="maisie:1968 machine:1966" lit="x1965 modern-by-choice ferranti ferranti-smokes"}
+## {.stage view="1946-1954" grow="maisie:1949" lit="maisie"}
+
+## {.stage view="1946-1962" grow="maisie:1954" lit="maisie"}
+
+## {.stage view="1946-1968" grow="maisie:1963" lit="maisie"}
+
+## {.stage view="1946-1972" grow="maisie:1968 machine:1966" lit="maisie x1965"}
 
 ## {.stage}
 
