@@ -1,70 +1,148 @@
-/* timeline-stage: theme tokens default from reveal's variables; override --stage-* in your theme. */
-.reveal {
-  --stage-primary: var(--r-main-color, #333);
-  --stage-ink: var(--r-main-color, #333);
+/* timeline-stage
+   Colours and fonts are tokens. The defaults follow the reveal theme and are declared with zero
+   specificity, so a theme overrides any of them with an ordinary `.reveal { --stage-…: … }` rule. */
+:where(.reveal) {
+  --stage-bg: var(--r-background-color, #fff);          /* the ground: label halos, hollow markers */
+  --stage-ink: var(--r-main-color, #222);               /* text */
+  --stage-primary: var(--r-main-color, #222);           /* lines without a colour of their own */
+  --stage-muted: color-mix(in srgb, var(--r-main-color, #222) 55%, var(--r-background-color, #fff));
   --stage-accent: var(--r-link-color, #2a76dd);
-  --stage-highlight: var(--r-selection-background-color, #ffb400);
-  --stage-muted: color-mix(in srgb, var(--r-main-color, #333) 40%, transparent);
-  --stage-font: var(--r-main-font, sans-serif);
-  --stage-panel: var(--r-background-color, #fff);
-  --stage-dim: 0.22;
-  --stage-stage-dim: 0.18;
+  --stage-highlight: #d98e00;                           /* forks, dates, now */
+  --stage-panel: var(--r-background-color, #fff);       /* solid covers and pins */
+  --stage-font: var(--r-heading-font, var(--r-main-font, sans-serif));   /* the diagram, dates, quotes */
+  --stage-text-font: var(--r-main-font, sans-serif);    /* caption sentences, plate labels */
+  --stage-dim: 0.28;                                    /* ghosted lines */
+  --stage-stage-dim: 0.14;                              /* the whole stage behind a cover */
 }
 
-/* the stage sits behind every slide */
+/* ------------------------------------------------------------------ the stage sits behind every slide */
 .reveal .slides .stage { position: absolute; left: 0; top: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0; transition: opacity .5s; }
 .reveal .slides .stage.is-dim { opacity: var(--stage-stage-dim) !important; }
-.reveal .slides .stage-svg { width: 100%; height: 100%; font-family: var(--stage-font); }
-.reveal .slides .stage g, .reveal .slides .stage path, .reveal .slides .stage line, .reveal .slides .stage text { transition: opacity .4s, visibility .4s; }
+.reveal .slides .stage-svg { display: block; width: 100%; height: 100%; font-family: var(--stage-font); }
+.reveal .slides .stage path, .reveal .slides .stage line, .reveal .slides .stage circle, .reveal .slides .stage text { transition: opacity .35s, visibility .35s; }
 
-.st-axisline { stroke: var(--stage-ink); stroke-width: 1.5; opacity: .45; }
-.st-tick { stroke: var(--stage-ink); opacity: .45; }
-.st-year { font-size: 15px; fill: var(--stage-ink); opacity: .6; }
-.st-linename { font-weight: 700; font-size: 22px; fill: var(--stage-ink); opacity: .85; }
-.st-path { stroke-width: 4; }
-.st-strand { stroke-width: 2.5; opacity: .85; }
-.st-event circle { fill: var(--stage-ink); }
-.st-eventlabel { font-size: 14px; fill: var(--stage-ink); opacity: .85; }
-.st-leader { stroke: var(--stage-ink); stroke-width: 1; opacity: .45; }
-.st-fork line { stroke: var(--stage-highlight); stroke-width: 2; }
-.st-fork.st-emphasis line { stroke: var(--stage-accent); stroke-width: 3; }
-.st-forklabel { font-size: 15px; fill: var(--stage-ink); }
-.st-fork.st-emphasis .st-forklabel { font-size: 18px; font-weight: 700; }
+.st-axisline { stroke: var(--stage-muted); stroke-width: 1; opacity: .6; }
+.st-tick { stroke: var(--stage-muted); stroke-width: 1; }
+.st-year { font-size: 15px; font-weight: 500; fill: var(--stage-muted); font-variant-numeric: tabular-nums; }
+.st-year.is-now { fill: var(--stage-highlight); font-weight: 700; }
+.st-now { stroke: var(--stage-highlight); stroke-width: 1.25; opacity: .5; }
+.st-linename { font-size: 21px; font-weight: 700; }
+
+.st-path { stroke-width: 3.5; }
+.st-path.st-strand { stroke-width: 2; }
+.st-node { fill: var(--stage-highlight); stroke: var(--stage-bg); stroke-width: 2.5; }
+.st-kinknode { stroke-width: 2; }
+.st-ring { fill: none; stroke: var(--stage-highlight); stroke-width: 1.5; opacity: .75; }
+.st-eventdot { stroke: var(--stage-bg); stroke-width: 2; }
+.st-terminal { fill: var(--stage-bg); stroke-width: 2.5; }
+.st-leader { stroke: var(--stage-muted); stroke-width: 1; }
+.st-eventring { fill: none; stroke: var(--stage-highlight); stroke-width: 1.5; opacity: .8; }   /* this event opens pictures */
+.st-planned { fill: var(--stage-bg); stroke: var(--stage-highlight); stroke-width: 2.5; }       /* not yet happened */
 .st-crossline { stroke: var(--stage-highlight); stroke-width: 2; stroke-dasharray: 6 6; }
-.st-crossmark { fill: var(--stage-panel); stroke: var(--stage-highlight); stroke-width: 3; }
-.st-crosslabel { font-size: 16px; font-weight: 600; fill: var(--stage-ink); }
-.st-endlabel { font-size: 19px; font-weight: 600; fill: var(--stage-ink); }
+.st-crossmark { fill: var(--stage-bg); stroke: var(--stage-highlight); stroke-width: 3; }
 
-/* stage slides: transparent, top-anchored, no padding, regardless of the theme's center setting */
-.reveal .slides section.stage { padding: 0 !important; top: 0 !important; height: 100%; box-sizing: border-box; background: transparent; }
-.reveal .slides section.slide.stage > h2:first-child, .reveal .slides section.slide.stage > h1:first-child, .reveal .slides section.stage > h2:first-child { position: absolute; left: 5.5%; top: 24px; height: auto; margin: 0; display: block; font-size: 34px; line-height: 1.2; }
+/* every word on the diagram: a halo in the ground colour keeps it legible where it crosses a line */
+.st-label { font-size: 17px; font-weight: 500; fill: var(--stage-ink); paint-order: stroke fill; stroke: var(--stage-bg); stroke-width: 5px; stroke-linejoin: round; }
+.st-label.is-past { opacity: .5; }
+.st-label.is-off { opacity: 0; }
+.st-forklabel.st-emphasis, .st-kinklabel.st-emphasis { font-size: 20px; font-weight: 700; fill: var(--stage-highlight); }
+.st-tag.st-coloured { font-weight: 700; }
+.st-strandname { font-size: 16px; font-weight: 600; }
+.st-endlabel { font-size: 16px; fill: var(--stage-muted); }
+.st-crosslabel { font-weight: 600; }
 
-/* lighting */
+/* lighting: what is not lit becomes a ghost, and a ghost carries no words */
 .reveal .slides .stage .is-dim { opacity: var(--stage-dim) !important; }
+.reveal .slides .stage .st-linename.is-dim { opacity: .5 !important; }
+.reveal .slides .stage .st-label.is-dim, .reveal .slides .stage .st-leader.is-dim { opacity: 0 !important; }
 
-/* pins: overlays pinned to a year; the plugin sets `left` */
-.reveal .slides section.stage .pin { position: absolute; width: 360px; box-sizing: border-box; background: color-mix(in srgb, var(--stage-panel) 96%, transparent);
-  border: 1.5px solid color-mix(in srgb, var(--stage-ink) 25%, transparent); border-radius: 6px; padding: 14px 18px;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, .12); font-size: 17px; line-height: 1.35; color: var(--stage-ink); text-align: left; z-index: 2; }
+/* ------------------------------------------------------------------ stage slides */
+/* transparent, top-anchored, no padding, whatever the theme's own slide layout */
+.reveal .slides section.stage { padding: 0 !important; top: 0 !important; height: 100%; box-sizing: border-box; background: transparent; }
+/* the caption carries the words; a stage slide's heading names it for menus and outlines only */
+.reveal .slides section.stage.stage > h1:first-child, .reveal .slides section.stage.stage > h2:first-child {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+
+/* caption: the moment in words, top left. A bold lead-in ("**1960, the eleven-plus.**") is set as the date */
+.reveal .slides section.stage .caption { position: absolute; left: 5%; top: 5%; width: 54%; box-sizing: border-box; margin: 0; z-index: 2;
+  font-family: var(--stage-text-font); font-size: 24px; line-height: 1.3; color: var(--stage-ink); text-align: left; }
+.reveal .slides section.stage .caption.width-wide { width: 72%; }
+.reveal .slides section.stage .caption.width-narrow { width: 40%; }
+.reveal .slides section.stage .caption p { margin: 0 0 .5em 0; font-size: inherit; line-height: inherit; color: inherit; }
+.reveal .slides section.stage .caption p:last-child { margin-bottom: 0; }
+.reveal .slides section.stage .caption p > strong:first-child { font-family: var(--stage-font); font-weight: 700; color: var(--stage-highlight); }
+
+/* plate: the evidence, in a column on the right, shown whole */
+.reveal .slides section.stage .plate { position: absolute; right: 5%; top: 5.6%; width: 400px; box-sizing: border-box; margin: 0; z-index: 2;
+  font-family: var(--stage-text-font); color: var(--stage-ink); text-align: left; }
+.reveal .slides section.stage .plate.side-left { right: auto; left: 5%; }
+.reveal .slides section.stage .plate.width-wide { width: 520px; }
+.reveal .slides section.stage .plate.width-narrow { width: 320px; }
+.reveal .slides section.stage .plate > * { margin: 0 0 12px 0; }
+.reveal .slides section.stage .plate > :last-child { margin-bottom: 0; }
+.reveal .slides section.stage .plate img, .reveal .slides section.stage .plate video { display: block; width: auto; max-width: 100%; max-height: 440px; margin: 0; }
+.reveal .slides section.stage .plate p.st-text, .reveal .slides section.stage .cover > .st-media ~ p.st-text { font-size: 14px; line-height: 1.4; color: var(--stage-muted); }
+.reveal .slides section.stage .plate a, .reveal .slides section.stage .cover a, .reveal .slides section.stage .caption a { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.reveal .slides section.stage .plate blockquote, .reveal .slides section.stage .cover blockquote { display: block; position: static; width: auto; margin: 0 0 12px 0; padding: 0; border: 0; background: none; box-shadow: none;
+  font-family: var(--stage-font); font-style: normal; font-weight: 600; font-size: 26px; line-height: 1.28; color: var(--stage-ink); }
+.reveal .slides section.stage .plate blockquote p, .reveal .slides section.stage .cover blockquote p { margin: 0; font-size: inherit; line-height: inherit; color: inherit; }
+.reveal .slides section.stage blockquote p.st-hang { text-indent: -0.44em; }
+
+/* several pictures in one paragraph: a row of equal height (the plugin sets each one's share) */
+.reveal .slides section.stage .st-row { display: flex; gap: 10px; align-items: flex-start; }
+.reveal .slides section.stage .st-row > img, .reveal .slides section.stage .st-row > video { flex: 1 1 0; width: 0; min-width: 0; max-width: none; height: auto; max-height: none; }
+
+/* cover: something large over a dimmed stage (`dim="true"` on the heading) */
+.reveal .slides section.stage .cover { position: absolute; left: 5%; right: 5%; top: 5.6%; bottom: 13.5%; box-sizing: border-box; margin: 0; z-index: 2;
+  display: flex; flex-direction: column; justify-content: center; gap: 12px;
+  font-family: var(--stage-text-font); color: var(--stage-ink); text-align: left; }
+.reveal .slides section.stage .cover > * { margin: 0; }
+.reveal .slides section.stage .cover h2, .reveal .slides section.stage .cover h3 { position: static; display: block; height: auto; font-size: 36px; line-height: 1.15; color: inherit; }
+.reveal .slides section.stage .cover p, .reveal .slides section.stage .cover li { font-size: 24px; line-height: 1.3; color: inherit; }
+.reveal .slides section.stage .cover img, .reveal .slides section.stage .cover video { display: block; width: auto; max-width: 100%; max-height: 100%; margin: 0; }
+.reveal .slides section.stage .cover iframe { display: block; position: static; flex: 1 1 auto; width: 100%; height: auto; max-width: none; min-height: 0; max-height: none; border: 0; }
+/* a cover under a caption starts below it */
+.reveal .slides section.stage .caption ~ .cover { top: 22%; }
+.reveal .slides section.stage .cover.tone-panel, .reveal .slides section.stage .cover.tone-dark { padding: 36px 48px; border-radius: 6px; }
+.reveal .slides section.stage .cover.tone-panel { background: var(--stage-panel); }
+.reveal .slides section.stage .cover.tone-dark { background: var(--stage-ink); color: var(--stage-bg); }
+
+/* pin: a free note tied to a year; the plugin sets `left` */
+.reveal .slides section.stage .pin { position: absolute; width: 340px; box-sizing: border-box; margin: 0; z-index: 2; padding: 2px 0 2px 14px;
+  border-left: 2px solid var(--stage-highlight); font-family: var(--stage-text-font); font-size: 18px; line-height: 1.35; color: var(--stage-ink); text-align: left; }
 .reveal .slides section.stage .pin.side-above { top: 70px; }
 .reveal .slides section.stage .pin.side-mid { top: 230px; }
-.reveal .slides section.stage .pin.side-below { bottom: 36px; }
-.reveal .slides section.stage .pin.width-wide { width: 520px; }
-.reveal .slides section.stage .pin.width-narrow { width: 260px; }
-.reveal .slides section.stage .pin p { margin: 0 0 .4em 0; font-size: 17px; }
+.reveal .slides section.stage .pin.side-below { bottom: 110px; }
+.reveal .slides section.stage .pin.width-wide { width: 500px; }
+.reveal .slides section.stage .pin.width-narrow { width: 250px; }
+.reveal .slides section.stage .pin p { margin: 0 0 .4em 0; font-size: inherit; line-height: inherit; color: inherit; }
 .reveal .slides section.stage .pin p:last-child { margin-bottom: 0; }
-.reveal .slides section.stage .pin img, .reveal .slides section.stage .pin video { width: 100%; max-height: 240px; object-fit: contain; display: block; margin: 0 0 8px 0; }
-.reveal .slides section.stage .pin img[height] { max-height: none; width: auto; max-width: 100%; }
-.reveal .slides section.stage .pin h3, .reveal .slides section.stage .pin h4 { margin: 0 0 .3em 0; font-size: 21px; line-height: 1.25; }
-.reveal .slides section.stage .pin blockquote { margin: 0; padding: 0; font-weight: 700; font-size: 21px; line-height: 1.25; background: none; border: 0; box-shadow: none; }
-.reveal .slides section.stage .pin ul { margin: 0; padding-left: 1.1em; font-size: 17px; }
+.reveal .slides section.stage .pin img, .reveal .slides section.stage .pin video { display: block; width: auto; max-width: 100%; max-height: 240px; margin: 0 0 8px 0; }
 
-/* covers: a large panel over a dimmed stage */
-.reveal .slides section.stage .cover { position: absolute; left: 7%; top: 10%; width: 86%; height: 80%; box-sizing: border-box; overflow: hidden;
-  background: color-mix(in srgb, var(--stage-panel) 97%, transparent); border-radius: 8px; box-shadow: 0 10px 40px rgba(0, 0, 0, .18); padding: 36px 48px; color: var(--stage-ink); text-align: left; z-index: 2; }
-.reveal .slides section.stage .cover.tone-dark { background: var(--stage-ink); color: #fff; }
-.reveal .slides section.stage .cover.tone-dark h1, .reveal .slides section.stage .cover.tone-dark h2, .reveal .slides section.stage .cover.tone-dark h3, .reveal .slides section.stage .cover.tone-dark p, .reveal .slides section.stage .cover.tone-dark li { color: #fff; }
-.reveal .slides section.stage .cover h2, .reveal .slides section.stage .cover h3 { position: static; margin: 0 0 .5em 0; font-size: 36px; }
-.reveal .slides section.stage .cover p, .reveal .slides section.stage .cover li { font-size: 24px; }
-.reveal .slides section.stage .cover img { max-height: 70%; width: auto; max-width: 100%; display: block; }
-.reveal .slides section.stage .cover blockquote { margin: 0; padding: 0; font-weight: 700; font-size: 40px; line-height: 1.2; background: none; border: 0; box-shadow: none; }
+/* a small source line inside a caption: [Sources: …]{.source} */
+.reveal .slides section.stage .caption .source { display: block; margin-top: .5em; font-size: 14px; line-height: 1.4; color: var(--stage-muted); }
+
+/* popup: the pictures and the full note of an event, opened by clicking its marker */
+.reveal.st-hot, .reveal.st-hot * { cursor: pointer; }
+.reveal .slides .st-popup { position: absolute; left: 0; top: 0; width: 100%; height: 100%; z-index: 30; box-sizing: border-box; padding: 4% 5%;
+  display: flex; align-items: center; justify-content: center; cursor: pointer; pointer-events: none;
+  background: color-mix(in srgb, var(--stage-bg) 96%, transparent);
+  opacity: 0; visibility: hidden; transition: opacity .3s ease, visibility 0s linear .3s; }
+.reveal .slides .st-popup.open { opacity: 1; visibility: visible; pointer-events: auto; transition: opacity .3s ease; }
+.reveal .slides .st-popup figure { margin: 0; max-width: 100%; }
+.reveal .slides .st-popup-images { display: flex; align-items: flex-start; justify-content: flex-start; gap: 14px; }
+/* the plugin gives the pictures of one card a common height that fits the slide */
+.reveal .slides .st-popup img { display: block; flex: 0 0 auto; width: auto; max-width: none; max-height: none; margin: 0; box-shadow: 0 18px 50px rgba(0, 0, 0, .4); }
+.reveal .slides .st-popup figcaption { margin-top: 18px; max-width: 900px; font-family: var(--stage-text-font); font-size: 24px; line-height: 1.3; color: var(--stage-ink); text-align: left; }
+.reveal .slides .st-popup figcaption strong { font-family: var(--stage-font); font-weight: 700; color: var(--stage-highlight); }
+
+/* ------------------------------------------------------------------ motion: one quiet arrival per click */
+@keyframes st-arrive { from { opacity: 0; } to { opacity: 1; } }
+.reveal .slides section.stage.present > .caption { animation: st-arrive .45s .1s both; }
+.reveal .slides section.stage.present > .plate, .reveal .slides section.stage.present > .cover, .reveal .slides section.stage.present > .pin { animation: st-arrive .6s .4s both; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal .slides section.stage.present > .caption, .reveal .slides section.stage.present > .plate, .reveal .slides section.stage.present > .cover, .reveal .slides section.stage.present > .pin { animation: none; }
+}
+@media print {
+  .reveal .slides section.stage > .caption, .reveal .slides section.stage > .plate, .reveal .slides section.stage > .cover, .reveal .slides section.stage > .pin { animation: none !important; }
+}

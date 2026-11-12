@@ -1,13 +1,14 @@
 /*-- scss:defaults --*/
 // GJBRC PowerPoint template v04, ported to reveal.js for Quarto.
 // Colours are sampled directly from the template artwork.
-@import url("https://fonts.googleapis.com/css2?family=Asap:wght@700&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Asap:wght@400;500;600;700&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap");
 
 $gjbrc-purple-dark: #2a0b44; // dark slide background
 $gjbrc-purple:      #462072; // brand purple: text, lavender blob, corner triangle
 $gjbrc-grey:        #f6f6f6; // light slide background
 $gjbrc-teal:        #00e6cb; // comparison-slide bullets
 $gjbrc-gold:        #fbb109; // teardrop / corner triangle
+$gjbrc-lilac:       #b8a6d9; // tint of the brand purple: secondary marks on dark slides (not in the template)
 $gjbrc-white:       #ffffff;
 
 // Slide is 1280 x 720. Template is 960 x 540 pt, so 1 pt = 1.3333 px.
@@ -39,6 +40,8 @@ $lvl5: 18.67px;         // 14 pt
 // ---------------------------------------------------------------- backgrounds
 // reveal.js copies each slide's classes onto its .slide-background layer, so
 // backgrounds and logos live there and never collide with slide content.
+// the light logo is used by several slide types: inline it once
+.reveal { --gjbrc-logo-light: url("ASSET:logo-light"); }
 .reveal .slide-background {
   background-color: $gjbrc-grey;
   background-image: url("ASSET:bg-content");
@@ -59,7 +62,7 @@ $lvl5: 18.67px;         // 14 pt
   background-color: $gjbrc-purple-dark;
   background-image: url("ASSET:bg-title");
   &::after {
-    background-image: url("ASSET:logo-light");
+    background-image: var(--gjbrc-logo-light);
     left: 8.77%; top: 17.9%; width: 30.96%; height: 11.9%;
   }
 }
@@ -67,7 +70,7 @@ $lvl5: 18.67px;         // 14 pt
 .reveal .slide-background.section {
   background-color: $gjbrc-purple-dark;
   background-image: url("ASSET:bg-section");
-  &::after { background-image: url("ASSET:logo-light"); }
+  &::after { background-image: var(--gjbrc-logo-light); }
 }
 .reveal .slide-background.comparison { background-image: url("ASSET:bg-comparison"); }
 .reveal .slide-background.image-1,
@@ -190,6 +193,9 @@ $lvl5: 18.67px;         // 14 pt
   p, li { color: $gjbrc-white; margin: 0; font-size: $lvl3; line-height: 1.25; }
   .small, small { font-size: $lvl5; line-height: 1.6; }
   ul { list-style: none; }
+  // an end slide with no heading text: the lines start where the heading would
+  > h2:first-child:empty { margin: 0; height: 0; }
+  > h2:first-child:empty + p, > p:first-child { margin-top: 262px; }
 }
 
 // ---------------------------------------------------------------- comparison
@@ -292,6 +298,32 @@ $lvl5: 18.67px;         // 14 pt
   }
 }
 
+// ---------------------------------------------------------------- timeline stage
+// Slides drawn by the timeline-stage extension (class `stage`): the template's dark slide without
+// the artwork, so that one drawing can develop across a whole talk. The extension reads its
+// colours and fonts from the --stage-* variables.
+.reveal .slide-background.stage {
+  background-color: $gjbrc-purple-dark;
+  background-image: none;
+  &::after {
+    background-image: var(--gjbrc-logo-light);
+    background-position: right bottom;
+    left: 82.5%; top: 92.5%; width: 12.5%; height: 4.75%;
+    opacity: .85;
+  }
+}
+.reveal {
+  --stage-bg: #{$gjbrc-purple-dark};
+  --stage-ink: #{$gjbrc-grey};
+  --stage-primary: #{$gjbrc-grey};
+  --stage-muted: #{$gjbrc-lilac};
+  --stage-accent: #{$gjbrc-teal};
+  --stage-highlight: #{$gjbrc-gold};
+  --stage-panel: #{$gjbrc-purple};
+  --stage-font: "Asap", "Open Sans", Arial, sans-serif;
+  --stage-text-font: "Open Sans", Arial, sans-serif;
+}
+
 // ---------------------------------------------------------------- chrome
 .reveal .slide-number {
   position: fixed;
@@ -306,6 +338,7 @@ $lvl5: 18.67px;         // 14 pt
 // hide the number on dark slides, as the template does
 .reveal:has(section.present#title-slide) .slide-number,
 .reveal:has(section.present.end) .slide-number,
+.reveal:has(section.present.stage) .slide-number,
 .reveal:has(section.present.level1) .slide-number,
 .reveal:has(section.present.section) .slide-number { visibility: hidden; }
 

@@ -1,111 +1,283 @@
 span: [1946, 2045]
+
+# where the drawing sits on the 1280 x 720 slide (pixels), under the caption and beside the plate
+options:
+  top: 200          # top of the first band
+  bottom: 604       # bottom of the last band
+  axis: 628         # the year axis
+  gap: 0.066        # space between the two bands, as a share of top..bottom
+  spread: 0.97      # how much of her band Maisie's branches fill
+  strandGap: 30     # between the machine's line and its two strands
+  easeYears: 2      # years a fork takes to open
+
 lines:
   - id: machine
     label: The machine
     start: 1948-06-21
-    colour: "#6d5a8c"
+    colour: muted
+    band: 9
     strands:
       - { id: jefferson, label: Jefferson, start: 1949-06-09, end: 1961-01-29 }
       - { id: turing, label: Turing, start: 1948-09, end: 1954-06-07 }
+      # the Centre's own history runs in Jefferson's row once his strand has ended
+      # (no label: the captions name it, and a name on the line would sit on the ringed points)
+      - { id: centre, start: 2015, lane: 1, colour: accent }
     meets:
       - [jefferson, turing, 1949-06-09]
       - [jefferson, turing, 1952-01-10]
     events:
-      - { id: baby, year: 1948-06-21, label: "the Manchester Baby runs its first program", side: above }
-      - { id: turing-arrives, year: 1948-09, label: Turing arrives in Manchester, on: turing, side: below }
-      - { id: lister, year: 1949-06-09, label: The Mind of Mechanical Man, on: jefferson, side: above }
-      - { id: times, year: 1949-06-11, label: Calculus to Sonnet, on: turing, side: below }
-      - { id: paper, year: 1950-10-01, label: Computing Machinery and Intelligence, on: turing, side: below }
-      - { id: mark1, year: 1951-02-01, label: Ferranti Mark 1, side: above }
-      - { id: bbc, year: 1952-01-10, label: the BBC broadcast, on: jefferson, side: above }
-      - { id: turing-dies, year: 1954-06-07, label: "Turing dies, Wilmslow", on: turing, side: below, end: true }
-      - { id: jefferson-dies, year: 1961-01-29, label: Jefferson dies, on: jefferson, side: above, end: true }
-      - { id: pocket, year: 2026, label: the machine in your pocket, side: above }
+      - { id: baby, year: 1948-06-21, label: the Manchester Baby runs its first program }
+      - { id: turing-arrives, year: 1948-09, label: Turing arrives in Manchester, on: turing }
+      - { id: lister, year: 1949-06-09, label: The Mind of Mechanical Man, on: jefferson }
+      - { id: times, year: 1949-06-11, label: Calculus to Sonnet, on: turing }
+      - { id: paper, year: 1950-10-01, label: Computing Machinery and Intelligence, on: turing }
+      - { id: mark1, year: 1951-02-12, label: Ferranti Mark 1 }
+      - { id: bbc, year: 1952-01-10, label: BBC debate broadcast, on: jefferson }
+      - { id: turing-dies, year: 1954-06-07, label: "Turing dies, Wilmslow", on: turing, end: true }
+      - { id: jefferson-dies, year: 1961-01-29, label: Jefferson dies, on: jefferson, end: true }
+      - { id: pocket, year: 2026, label: the machine in your pocket }
+
+      # The Manchester Brain Health Centre, 2015 to 2026 (from the Roche Dublin deck).
+      # `label` is the short name on the line. Clicking a point opens `date` and `text` in full,
+      # with the pictures in `img` (several separated by |). A ring marks the points with pictures.
+      # Points given only by year sit mid-year, in the order of the original slide.
+      # -- evidence and advocacy
+      - id: c-finger
+        on: centre
+        year: 2015.2
+        label: FINGER trial
+        date: "2015"
+        text: "FINGER trial (Lancet): multidomain lifestyle intervention preserves cognition"
+        img: images/bhc/fingertrial.png
+      - id: c-lancet
+        on: centre
+        year: 2017.55
+        label: Lancet Commission
+        date: "2017"
+        text: "Lancet Commission: nine modifiable factors, ~35% of dementia"
+        img: images/bhc/lancetcommission.png
+      - id: c-edinburgh
+        on: centre
+        year: 2017.8
+        label: Edinburgh Consensus
+        date: "Oct 2017"
+        text: "Edinburgh Consensus proposes a Brain Health Clinic Network"
+        img: images/bhc/edinburghconsensus.png
+      - id: c-tier3
+        on: centre
+        year: 2018.5
+        label: Tier-3 referral model fails
+        date: "2018"
+        text: "Tier-3 referral model in GMMH fails to gain traction"
+      - id: c-oxford
+        on: centre
+        year: 2019.5
+        label: Oxford meeting
+        date: "2019"
+        text: "Oxford meeting: Dunne, Mackay, Raymont, Coulthard, Ritchie; nucleus of the UK Brain Health Coalition"
+      - id: c-blueprint
+        on: centre
+        year: 2020.12
+        label: Brain Health Clinic blueprint
+        date: "2020"
+        text: "Leroi BHC blueprint; Frisoni European Brain Health Service papers; Brain Health Scotland launches"
+        img: images/bhc/leroiblueprint.png
+      # -- starting from nothing
+      - id: c-webinars
+        on: centre
+        year: 2020.75
+        label: consortium webinars
+        date: "2020–21"
+        text: "Biogen-sponsored BHC Consortium webinars keep the network alive through COVID"
+      - id: c-mci
+        on: centre
+        year: 2021.3
+        label: Manchester Consensus on MCI
+        date: "2021"
+        text: "Manchester Consensus on MCI (Age and Ageing)"
+        img: images/bhc/mcrconsensus.png
+      - id: c-daisybank
+        on: centre
+        year: 2022.15
+        label: "first patients, Daisybank Road"
+        date: "Early 2022"
+        text: "First patients seen at Daisybank Road: one clinician, £14k MAHSC funding, CSF batched to UCL"
+      - id: c-lp
+        on: centre
+        year: 2023.29
+        label: first lumbar puncture
+        date: "Apr 2023"
+        text: "First lumbar puncture in repurposed GMMH ECT recovery"
+        img: "images/bhc/CSFRoss.png|images/bhc/ECSutie.png"
+      - id: c-hsj
+        on: centre
+        year: 2023.62
+        label: HSJ award
+        date: "2023"
+        text: "HSJ Modernising Diagnostics Award"
+        img: images/bhc/HSJaward.png
+      - id: c-lilly
+        on: centre
+        year: 2023.95
+        label: Lilly and DPUK partnership
+        date: "Dec 2023"
+        text: "Lilly / DPUK CSF data partnership begins (four UK sites; support GMMH assays)"
+        img: images/bhc/lillycsfreport.png
+      # -- partnership and scale
+      - id: c-nmgh
+        on: centre
+        year: 2024.12
+        label: CSF assays move to NMGH
+        date: "Q1 2024"
+        text: "CSF assays move to NMGH lab with Roche; turnaround 87 to 14 days"
+        img: "images/bhc/uclhlabmeasured.png|images/bhc/mftlabs.png"
+      - id: c-crf
+        on: centre
+        year: 2024.79
+        label: the clinic moves to the NIHR CRF
+        date: "Oct 2024"
+        text: "Philanthropy £100k; clinic relocates to the NIHR CRF, Grafton Street; MFT and GMMH staff seconded"
+        img: images/bhc/nihrmanchestercrf.png
+      - id: c-flagship
+        on: centre
+        year: 2025.4
+        label: two HSJ awards; Roche flagship site
+        date: "2025"
+        text: "Two HSJ awards; Roche proBrain Alliance flagship site (w/ Belfast) for Elecsys plasma pTau217"
+        img: "images/bhc/hsjpartner1.jpg|images/bhc/hsjpartner2.png|images/bhc/elecsyscasestudy.png"
+      - id: c-board
+        on: centre
+        year: 2025.95
+        label: Partnership Board
+        date: "2025–26"
+        text: "Philanthropy / Alzheimer's Society £1.183m SLA; GMMH–MFT–AS-GMHSCP Partnership Board; RIBA Stage 1 funded"
+      - id: c-220
+        on: centre
+        year: 2026.2
+        label: 220 biomarker-confirmed diagnoses
+        date: "Mar 2026"
+        text: "220 biomarker-confirmed diagnoses; Oxford Summit; Industry £50m in negotiation"
+      - id: c-phase2
+        on: centre
+        year: 2026.62
+        label: one-stop clinic
+        date: "Q3 2026"
+        text: "Phase 2 one-stop clinic: same-day MRI with ASL, blood-first pTau217, vascular workup, cohort study"
+        img: images/bhc/bhclaunch.png
+        planned: true
+      # -- 2026 to 2027: held back on the earlier Centre slide and shown after the treatment fork.
+      #    Add `img: images/bhc/<file>` to each when the pictures arrive (a ring then marks the point).
+      - id: c-dmt
+        on: centre
+        year: 2026.45
+        label: Lilly DMT Pathway project
+        date: "2026"
+        text: "Lilly DMT Pathway project"
+      - id: c-blood
+        on: centre
+        year: 2026.85
+        label: blood biomarkers roll out
+        date: "Nov 2026"
+        text: "Rollout of blood biomarkers"
+      - id: c-navigate
+        on: centre
+        year: 2027.0
+        label: Project Navigate
+        date: "2026–27"
+        text: "Project Navigate: £50m partnership investment"
+        img: images/bhc/gsk-navigate.png
+      # the last point on the line: not built yet, so an open marker; its year is a placeholder
+      - id: c-building
+        on: centre
+        year: 2028
+        label: the bricks-and-mortar centre
+        date: "Planned"
+        text: "The Manchester Brain Health Centre, in bricks and mortar"
+        img: images/bhc/mbhc-building.png
+        planned: true
 
   - id: maisie
     label: Maisie
     start: 1948-06-21
+    band: 35
     events:
-      - { id: born, year: 1948-06-21, label: "born at home, off Rochdale Road", side: below }
-      - { id: child-grammar, year: 1978, label: "first child, at thirty", on: grammar }
-      - { id: child-ferranti, year: 1969, label: "first child, at twenty-one", on: ferranti }
-      - { id: child-ferranti-s, year: 1969, label: "first child, at twenty-one", on: ferranti-smokes }
-      - { id: child-machinist, year: 1968, label: "first child, at twenty", on: machinist }
-      - { id: child-machinist-s, year: 1968, label: "first child, at twenty", on: machinist-smokes }
+      - { id: born, year: 1948-06-21, label: born off Rochdale Road }
+      - { id: child-machinist, year: 1968, label: a daughter, on: large-family, side: above }   # rises: no room beneath the lowest line
+      - { id: child-ferranti, year: 1969, label: a son, on: modern-by-choice }
+      - { id: child-grammar, year: 1978, label: a daughter, on: grammar }
+    # `label` names a branch where it leaves the fork; `end-label` is what its ending says.
+    # The ending years are placeholders until the four women are settled.
     forks:
       # 1951: the family keeps growing, or doesn't
       - at: 1951
-        label: one more child, or six more
         children:
           - id: small-family
-            label: one more
+            label: one more child
             forks:
               # 1960: in the small family the exam is a real fork
               - at: 1960
                 label: passes the eleven-plus
                 children:
-                  - { id: grammar, label: the grammar school }
+                  - { id: grammar, label: grammar school, end: 2039, end-label: diagnosed at 91 }
                   - id: modern-by-choice
-                    label: the secondary modern anyway
+                    label: secondary modern anyway
                     forks:
-                      # 1965: work, and the cigarette that comes with it
-                      - at: 1965
-                        label: "Ferranti, the production line"
+                      # 1989: a husband's angina, on this branch only
+                      - at: 1989
+                        label: a husband's angina
                         children:
-                          - { id: ferranti, label: never smokes }
-                          - id: ferranti-smokes
-                            label: "smokes, at the bus stop on Moston Lane"
+                          - { id: ferranti-still, label: never stops, end: 2016, end-label: diagnosed at 68 }
+                          - id: ferranti-quits
+                            label: they stop together
                             forks:
-                              # 1989: a husband's angina
-                              - at: 1989
-                                label: a husband's angina
+                              # 2009: hearing
+                              - at: 2009
+                                label: hearing
+                                ease: 1.2
                                 children:
-                                  - id: ferranti-quits
-                                    label: they stop together
+                                  - { id: hearing-none, label: no hearing aids, end: 2024, end-label: diagnosed at 76 }
+                                  - id: hearing-aids
+                                    label: hearing aids
                                     forks:
-                                      # 2009: hearing
-                                      - at: 2009
-                                        label: hearing
+                                      # 2026: twelve minutes with a GP
+                                      - at: 2026.2
+                                        label: the GP, twelve minutes
+                                        emphasis: true
+                                        ease: 0.7
                                         children:
-                                          - id: hearing-aids
-                                            label: "hearing aids; a daughter's morning at Crumpsall"
+                                          - { id: reassured, label: probably just ageing, end: 2029, end-label: "diagnosed at 81, CDR 2" }
+                                          - id: referred
+                                            label: referred that day
                                             forks:
-                                              # 2026: twelve minutes with a GP
-                                              - at: 2026.2
-                                                label: the GP, twelve minutes
-                                                emphasis: true
+                                              # 2027: which clinic
+                                              - at: 2027
+                                                ease: 0.7
                                                 children:
-                                                  - { id: reassured, label: "probably just ageing; come back if it gets worse" }
-                                                  - id: referred
-                                                    label: referred that day
+                                                  - { id: matrs, label: the memory clinic (MATS), end: 2030, end-label: diagnosed at 82 }
+                                                  - id: bhc
+                                                    label: the Brain Health Clinic
+                                                    colour: accent
                                                     forks:
-                                                      - at: 2027
-                                                        label: which clinic
+                                                      # a disease-modifying drug, by one route or the other
+                                                      - at: 2028.6
+                                                        ease: 0.35
                                                         children:
-                                                          - { id: matrs, label: the memory clinic (MATRS) }
-                                                          - { id: bhc, label: the Brain Health Clinic, colour: "#00e6cb" }
-                                          - { id: hearing-none, label: no hearing aids }
-                                  - { id: ferranti-still, label: she doesn't }
+                                                          - { id: bhc-trial, label: a disease-modifier trial, end: 2040 }
+                                                          - { id: bhc-nhs, label: a disease modifier on the NHS, end: 2040 }
           - id: large-family
             label: six more
             forks:
-              - at: 1965
-                label: "a machinist's job, not at Ferranti"
+              # 1999: blood pressure, found or not
+              - at: 1999
+                label: "blood pressure, 165/95"
                 children:
-                  - id: machinist
-                    label: never smokes
-                    forks:
-                      # 1999: blood pressure, found or not
-                      - at: 1999
-                        label: blood pressure, 165 over 95
-                        children:
-                          - { id: bp-treated, label: "found because of a knee; a prescription, a nurse who rings" }
-                          - { id: bp-untreated, label: no knee, no appointment, fifteen years untreated }
-                  - { id: machinist-smokes, label: smokes }
+                  - { id: bp-treated, label: "a knee, a prescription", end: 2036, end-label: diagnosed at 88 }
+                  - { id: bp-untreated, label: untreated, end: 2021, end-label: diagnosed at 73 }
+    # moments that bend one branch without splitting it
     forks-on:
-      # the same exam, a formality in the large family
       - { at: 1960, label: fails the eleven-plus, branches: [large-family] }
       - { at: 1965, label: stays on at school, branches: [grammar] }
-      - { at: 1989, label: never stops, branches: [machinist-smokes] }
-      - { at: 2012, label: "stops going to the Tuesday club", branches: [hearing-none] }
-
+      - { at: 1965, label: "Ferranti, the production line; smokes", branches: [modern-by-choice] }
+      - { at: 1965, label: "a machinist's job; smokes", branches: [large-family] }
+      - { at: 2012, label: stops going to the Tuesday club, branches: [hearing-none] }
+      - { at: 2028.6, label: "“go away and come back if it gets worse”", branches: [matrs] }

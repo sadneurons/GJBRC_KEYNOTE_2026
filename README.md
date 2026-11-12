@@ -23,27 +23,30 @@ render blank in Firefox and most non-Chrome viewers.
 Edit the sources and rebuild; only the built file is copied into `_site/`.
 Viewpoints are the `VIEWS` table at the top of `mwn.js`.
 
-## The stage: one diagram behind every slide
+## The stage: one drawing behind every slide
 
-`stage.html` draws two lines on one axis, 1946 to 2045: the machine's line (the Baby,
-1948, with Jefferson's and Turing's strands) and Maisie's line (9 June 1949), which forks
-into four women. Their crossings (June 1949, Ferranti 1965, the clinic 2026) are drawn as
-gold ties between the lines. The stage sits behind every slide and animates between
-states; each slide declares its state on the heading:
+`timeline.yml` holds two lines on one axis, 1946 to 2045. The machine's line starts with the
+Baby in 1948 and carries three strands: Jefferson, Turing and, from 2015, the Manchester Brain
+Health Centre. Maisie's line starts the same day and forks. The `timeline-stage` extension
+draws the file once behind every slide and animates between slides. Each slide says where the
+story has got to on its heading:
 
 ```
-## Title {.on-stage data-stage="4" data-machine="7" data-view="1946-1975" data-lit="x1965,b77"}
+## 1960: the eleven-plus {.stage view="1955-1970" grow="1964.8" now="1960" lit="maisie"}
 ```
 
-- `data-stage` 0..8: Maisie's line (born, to 1960, fork 1960, fork 1965, mid-life forks,
-  fork 2026, endpoints, places). `data-machine` 0..8: the machine's line.
-- `data-view="y0-y1"` zooms time; the vertical layout never changes.
-- `data-lit` lights branches (`b68 b77 b84 b91`) and crossings (`x1949 x1965 x2026`);
-  everything else dims. `data-dim="1"` fades the whole stage behind a large panel.
-- Overlays: `<div class="pin below|above|mid [wide] [left|right]" data-year="1965">` is
-  pinned to a year; `<div class="cover [dark]">` is a large panel. Do not name a class
-  `callout`: Quarto rewrites those.
+- `view` is the years shown, `grow` how far the lines are drawn, `now` the moment the slide is
+  about, and `lit` what is lit; everything else becomes a ghost without labels. The heading text
+  is not shown: it names the slide in the outline and the URL.
+- `::: {.caption}` is the words, top left; a bold lead-in is set as the date. `::: {.plate}` is
+  the picture or document, in a column on the right. `::: {.cover}` is something large over a
+  dimmed stage (`dim="true"`).
+- The Centre's points, 2015 to 2026, came from the Roche Dublin deck. Each has a short label on
+  the line and its full text, date and pictures in `timeline.yml`; clicking a point opens them,
+  and a ring marks the points with pictures. The pictures are in `images/bhc/`.
+- The stage slides use the theme's dark slide: colours and fonts are the `--stage-*` variables
+  in `_extensions/gjbrc/gjbrc.template.scss`.
 
-All years, labels and branch offsets are the tables at the top of `stage.html`.
-`tools/shoot_deck.py _site/index.html out/` screenshots every slide in one headless Chrome.
-The previous slide-by-slide deck is on the `deck-v1` branch.
+The full reference for the timeline file and the slide attributes is `../timeline-stage/README.md`.
+`python3 tools/shoot_deck.py _site/index.html out/` screenshots every slide in one headless
+Chromium. The earlier slide-by-slide deck is on the `deck-v1` branch.

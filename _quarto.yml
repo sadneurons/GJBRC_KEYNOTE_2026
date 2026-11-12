@@ -6,10 +6,12 @@ project:
   resources:
     - mwn/index.html
     - images/
+    - papers/
 
 format:
   gjbrc-revealjs:
     embed-resources: false
+    css: keynote.css
     filters:
       - timeline-stage
     revealjs-plugins:

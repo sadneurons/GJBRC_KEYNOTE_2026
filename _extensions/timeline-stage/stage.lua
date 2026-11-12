@@ -1,10 +1,10 @@
 -- timeline-stage: Quarto filter.
 -- Reads timeline.yml, converts dates to decimal years, embeds it as JSON,
--- marks `.stage` slides, and turns `.pin` / `.cover` divs into overlays.
+-- marks `.stage` slides, and turns `.caption` / `.plate` / `.cover` / `.pin` divs into overlays.
 
 local DATE_KEYS = { start = true, ["end"] = true, year = true, at = true }
 
--- "1949-06-09" -> 1949.44 ; "1949-06" -> 1949.41 ; "1949" / 1949 -> 1949
+-- "1949-06-09" -> 1949.438 ; "1949-06" -> 1949.413 ; "1949" / 1949 -> 1949
 local function to_decimal_year(v)
   if type(v) == "number" then return v end
   local s = tostring(v)
@@ -17,7 +17,7 @@ local function to_decimal_year(v)
   local days = { 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334 }
   local doy = days[tonumber(m)] + tonumber(d)
   local dec = tonumber(y) + doy / 365.25
-  return math.floor(dec * 100 + 0.5) / 100
+  return math.floor(dec * 1000 + 0.5) / 1000
 end
 
 local function meta_to_lua(v)
@@ -117,6 +117,9 @@ local function validate(data)
           if at < nstart then err(fp, "fork at " .. at .. " is before branch start " .. nstart) end
           if nend ~= nil and at > nend then err(fp, "fork at " .. at .. " is after branch end " .. nend) end
         end
+        if F.ease ~= nil and not (type(F.ease) == "number" and F.ease > 0) then
+          err(fp, 'ease "' .. tostring(F.ease) .. '" is not a positive number of years')
+        end
         for c, C in ipairs(F.children or {}) do
           local cp = fp .. ".children[" .. (c - 1) .. "]"
           claim(C.id, cp)
@@ -193,22 +196,32 @@ local function Header(h)
   return h
 end
 
+local OVERLAYS = { "pin", "cover", "plate", "caption" }
+
 local function Div(d)
-  if d.classes:includes("pin") or d.classes:includes("cover") then
-    local kind = d.classes:includes("pin") and "pin" or "cover"
-    local classes = pandoc.List({ kind })
-    for _, c in ipairs(d.classes) do if c ~= kind then classes:insert(c) end end
-    local attrs = {}
-    for k, v in pairs(d.attributes) do
-      if k == "side" or k == "tone" or k == "width" or k == "align" then
-        classes:insert(k .. "-" .. v)
-      else
-        attrs[k] = v
-      end
-    end
-    d.classes = classes
-    d.attributes = attrs
+  local kind = nil
+  for _, k in ipairs(OVERLAYS) do
+    if d.classes:includes(k) then kind = k; break end
   end
+  if not kind then return d end
+  local classes = pandoc.List({ kind })
+  for _, c in ipairs(d.classes) do if c ~= kind then classes:insert(c) end end
+  local attrs, style = {}, d.attributes["style"] or ""
+  for k, v in pairs(d.attributes) do
+    if k == "width" and tonumber(v) then
+      -- a number is a width in slide pixels
+      style = "width:" .. v .. "px;" .. style
+    elseif k == "top" and tonumber(v) then
+      style = "top:" .. v .. "px;" .. style
+    elseif k == "side" or k == "tone" or k == "width" or k == "align" then
+      classes:insert(k .. "-" .. v)
+    elseif k ~= "style" then
+      attrs[k] = v
+    end
+  end
+  if style ~= "" then attrs["style"] = style end
+  d.classes = classes
+  d.attributes = attrs
   return d
 end
 
