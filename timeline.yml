@@ -60,7 +60,15 @@ lines:
                               - at: 1989
                                 label: a husband's angina
                                 children:
-                                  - { id: ferranti-quits, label: they stop together }
+                                  - id: ferranti-quits
+                                    label: they stop together
+                                    forks:
+                                      # 2009: hearing
+                                      - at: 2009
+                                        label: hearing
+                                        children:
+                                          - { id: hearing-aids, label: "hearing aids; a daughter's morning at Crumpsall" }
+                                          - { id: hearing-none, label: no hearing aids }
                                   - { id: ferranti-still, label: she doesn't }
           - id: large-family
             label: six more
@@ -68,11 +76,20 @@ lines:
               - at: 1965
                 label: "a machinist's job, not at Ferranti"
                 children:
-                  - { id: machinist, label: never smokes }
+                  - id: machinist
+                    label: never smokes
+                    forks:
+                      # 1999: blood pressure, found or not
+                      - at: 1999
+                        label: blood pressure, 165 over 95
+                        children:
+                          - { id: bp-treated, label: "found because of a knee; a prescription, a nurse who rings" }
+                          - { id: bp-untreated, label: no knee, no appointment, fifteen years untreated }
                   - { id: machinist-smokes, label: smokes }
     forks-on:
       # the same exam, a formality in the large family
       - { at: 1960, label: fails the eleven-plus, branches: [large-family] }
       - { at: 1965, label: stays on at school, branches: [grammar] }
       - { at: 1989, label: never stops, branches: [machinist-smokes] }
+      - { at: 2012, label: "stops going to the Tuesday club", branches: [hearing-none] }
 

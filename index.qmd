@@ -95,6 +95,24 @@ Alan Turing, in The Times, Saturday 11 June 1949, under the heading "Calculus to
 **1989.** A husband's angina. One of the smokers stops with him. One never does.
 :::
 
+## {.stage view="1988-2003" grow="maisie:2002" lit="maisie"}
+
+::: {.pin year=1999 side=below align=left}
+**1999.** Blood pressure 165 over 95, found because of a knee. Or not found.
+:::
+
+## {.stage view="1998-2013" grow="maisie:2012" lit="maisie"}
+
+::: {.pin year=2009 side=below align=left}
+**2009.** Hearing aids, or not.
+:::
+
+## {.stage view="2000-2015" grow="maisie:2014" lit="maisie"}
+
+::: {.pin year=2012 side=below align=left}
+**2012.** The Tuesday club, given up.
+:::
+
 ## {.stage}
 
 ##
