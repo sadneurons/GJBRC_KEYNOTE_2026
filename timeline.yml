@@ -62,5 +62,3 @@ lines:
       - { at: 1960, label: fails the eleven-plus, branches: [large-family] }
       - { at: 1965, label: stays on at school, branches: [grammar] }
 
-crossings:
-  - { id: x1965, a: machine@1965, b: modern-by-choice@1965, label: she solders the machine }

@@ -27,7 +27,7 @@ format: gjbrc-revealjs
 
 ## {.stage view="1946-1968" grow="maisie:1963" lit="maisie"}
 
-## {.stage view="1946-1972" grow="maisie:1968 machine:1966" lit="maisie x1965"}
+## {.stage view="1946-1972" grow="maisie:1968 machine:1966" lit="maisie"}
 
 ## {.stage}
 
